@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RedCrossItCheckingSystem.DAL;
 using RedCrossItCheckingSystem.Models;
 
 namespace RedCrossItCheckingSystem.Controllers
@@ -18,9 +19,19 @@ namespace RedCrossItCheckingSystem.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
+            
             return View();
+        }
+        [HttpPost]
+        public IActionResult Index(DataContainer container)
+        {
+            DbManager manager = new DbManager();
+
+            container = manager.GetData(container);
+            return View(container);
         }
 
         public IActionResult Privacy()

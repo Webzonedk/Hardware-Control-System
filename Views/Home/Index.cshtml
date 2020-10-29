@@ -1,8 +1,24 @@
-﻿@{
+﻿@model RedCrossItCheckingSystem.Models.DataContainer
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form asp-action="Index" >
+        <div  method="post" asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label asp-for="SerialNumber"></label>
+            <input asp-for="SerialNumber" />
+            <label asp-for="CaseID"></label>
+            <input asp-for="CaseID" />
+            <input class="btn btn-primary" type="submit" value="søg" />
+        </div>
+    </form>
+    
+   
+    
 </div>
+@section scripts {
+    @{await Html.RenderPartialAsync("_validationScriptsPartial");}
+}
