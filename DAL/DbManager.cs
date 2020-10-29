@@ -30,6 +30,7 @@ namespace RedCrossItCheckingSystem.DAL
                 container.CaseID = (int)reader["caseID"];
             }
             Debug.Write(container.CaseID);
+            Debug.Write(container.SerialNumber);
             return container;
         }
     }
