@@ -12,6 +12,7 @@ namespace RedCrossItCheckingSystem.Models
     {
         private string serialNumber;
         private string department;
+        private string emplyeeName;
         private string description;
         private DateTime dateStart;
         private DateTime dateEnd;
@@ -20,6 +21,7 @@ namespace RedCrossItCheckingSystem.Models
         private string deviceType;
         private string accessories;
         private int caseID;
+        private bool isValid;
 
         public string SerialNumber { get => serialNumber; set => serialNumber = value; }
         public string Department { get => department; set => department = value; }
@@ -31,5 +33,7 @@ namespace RedCrossItCheckingSystem.Models
         public string DeviceType { get => deviceType; set => deviceType = value; }
         public string Accessories { get => accessories; set => accessories = value; }
         public int CaseID { get => caseID; set => caseID = value; }
+        public string EmplyeeName { get => emplyeeName; set => emplyeeName = value; }
+        public bool IsValid { get => isValid; set => isValid = value; }
     }
 }

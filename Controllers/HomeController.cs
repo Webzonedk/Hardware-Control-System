@@ -22,17 +22,37 @@ namespace RedCrossItCheckingSystem.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            
+           
             return View();
         }
         [HttpPost]
-        public IActionResult Index(DataContainer container)
+        public IActionResult Edit(DataContainer container)
+        {
+            
+            DbManager manager = new DbManager();
+            DataContainer returnData = new DataContainer();
+            returnData = manager.GetData(container);
+           
+            return View(returnData);
+          
+        }
+
+        public void test(object sender, EventArgs e)
+        {
+            Debug.Write("this works");
+        }
+
+        [HttpPost]
+        public IActionResult Confirmation(DataContainer container)
         {
             DbManager manager = new DbManager();
+            manager.SetData(container);
 
-            container = manager.GetData(container);
+            
             return View(container);
         }
+
+
 
         public IActionResult Privacy()
         {
