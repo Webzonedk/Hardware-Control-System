@@ -88,11 +88,6 @@ namespace RedCrossItCheckingSystem.Controllers
             return View(container);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult Overview()
         {
             DbManager manager = new DbManager();

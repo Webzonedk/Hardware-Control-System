@@ -3,26 +3,31 @@
     ViewData["Title"] = "Home Page";
 }
 
+<h2 class="text-center">Søgning gennemført</h2>
+
 @if (Model.Count > 0)
 {
+    <h4 class="text-center">din søgning gav @Model.Count hits</h4>
 
-    <div class="row">
-        <div class="col-md-8 ">
-            <span class="col-md-4">
+    <div class="row ">
+        <div class="col-md-1"></div>
+        <div class="col-md-10  d-flex justify-content-center">
+            <span class="col-md-3 ">
                 <label asp-for="@Model[0].SerialNumber"> </label>
             </span>
 
-            <span class="col-md-4">
+            <span class="col-md-3 ">
                 <label asp-for="@Model[0].DeviceName"> </label>
             </span>
 
-            <span class="col-md-4">
+            <span class="col-md-3 ">
                 <label asp-for="@Model[0].DeviceType"> </label>
             </span>
+            <span class="col-md-3 ">
 
+            </span>
         </div>
-
-
+        <div class="col-md-1"></div>
     </div>
 
 
@@ -33,23 +38,27 @@
 
             <div method="post" asp-validation-summary="ModelOnly"></div>
 
-            <div class="row">
-                <div class="col-md-8 ">
+            <div class="row ">
+                <div class="col-md-1"></div>
+                <div class="col-md-10  d-flex justify-content-center">
 
-                    <span class="col-md-4">
+                    <span class="col-md-3">
                         <input asp-for="@Model[i].SerialNumber" />
                     </span>
 
-                    <span class="col-md-4">
+                    <span class="col-md-3">
                         <input asp-for="@Model[i].DeviceName" />
                     </span>
 
-                    <span class="col-md-4">
+                    <span class="col-md-3">
                         <input asp-for="@Model[i].DeviceType" />
                     </span>
+                    <span class="col-md-3">
+                        <button class="btn btn-primary" type="submit" name="submit" value="@Model[i].CaseID" style="width=10%">Edit</button>
+                    </span>
+                    
                 </div>
-
-                <button class="btn btn-primary" type="submit" name="submit" value="@Model[i].CaseID">Edit</button>
+                <div class="col-md-1"></div>
             </div>
         }
     </form>
@@ -58,7 +67,7 @@
 else
 {
     <label>intet fundet</label>
-    
+
     <form asp-action="Create">
         <input class="btn btn-primary" type="submit" value="opret ny case" />
     </form>
