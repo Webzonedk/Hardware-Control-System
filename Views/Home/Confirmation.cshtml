@@ -15,15 +15,7 @@
                 <label asp-for="SerialNumber"></label>
             </div>
             <div class="col-md-1">
-                <input asp-for="SerialNumber" disabled="disabled" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <label asp-for="CaseID"></label>
-            </div>
-            <div class="col-md-1">
-                <input asp-for="CaseID" disabled="disabled" />
+                <input asp-for="SerialNumber" readonly />
             </div>
         </div>
         <div class="row">
@@ -31,7 +23,7 @@
                 <label asp-for="Department"></label>
             </div>
             <div class="col-md-1">
-                <input asp-for="Department" disabled="disabled" />
+                <input asp-for="Department" readonly />
             </div>
         </div>
         <div class="row">
@@ -39,7 +31,7 @@
                 <label asp-for="EmplyeeName"></label>
             </div>
             <div class="col-md-1">
-                <input asp-for="EmplyeeName" disabled="disabled" />
+                <input asp-for="EmplyeeName" readonly />
             </div>
         </div>
         <div class="row">
@@ -47,7 +39,7 @@
                 <label asp-for="Description"></label>
             </div>
             <div class="col-md-1">
-                <input asp-for="Description" disabled="disabled" />
+                <input asp-for="Description" readonly />
             </div>
         </div>
         <div class="row">
@@ -55,7 +47,7 @@
                 <label asp-for="DateStart"></label>
             </div>
             <div class="col-md-1">
-                <input asp-for="DateStart" disabled="disabled" />
+                <input asp-for="DateStart.ToShortDateString()" readonly />
             </div>
         </div>
         <div class="row">
@@ -63,7 +55,7 @@
                 <label asp-for="DateEnd"></label>
             </div>
             <div class="col-md-1">
-                <input asp-for="DateEnd" disabled="disabled" />
+                <input asp-for="DateEnd.ToShortDateString()" readonly />
             </div>
         </div>
         <div class="row">
@@ -71,7 +63,7 @@
                 <label asp-for="DeviceName"></label>
             </div>
             <div class="col-md-1">
-                <input asp-for="DeviceName" disabled="disabled" />
+                <input asp-for="DeviceName" readonly />
             </div>
         </div>
         <div class="row">
@@ -79,7 +71,7 @@
                 <label asp-for="DeviceType"></label>
             </div>
             <div class="col-md-1">
-                <input asp-for="DeviceType" disabled="disabled" />
+                <input asp-for="DeviceType" readonly />
             </div>
         </div>
         <div class="row">
@@ -87,7 +79,7 @@
                 <label asp-for="Accessories"></label>
             </div>
             <div class="col-md-1">
-                <input asp-for="Accessories" disabled="disabled" />
+                <input asp-for="Accessories" readonly />
             </div>
         </div>
         <div class="row">
@@ -95,12 +87,12 @@
                 <label asp-for="Status"></label>
             </div>
             <div class="col-md-1">
-                <input asp-for="Status" disabled="disabled" />
+                <input asp-for="Status" readonly />
             </div>
         </div>
 
 
-        <input class="btn btn-primary" type="submit" value="Edit" />
+        <button class="btn btn-primary" type="submit" name="submit" value="@Model.CaseID" >Edit</button>
         
     </div>
 

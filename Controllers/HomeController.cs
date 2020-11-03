@@ -4,9 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 using RedCrossItCheckingSystem.DAL;
 using RedCrossItCheckingSystem.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace RedCrossItCheckingSystem.Controllers
 {
@@ -22,41 +25,79 @@ namespace RedCrossItCheckingSystem.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-           
+
             return View();
         }
         [HttpPost]
-        public IActionResult Edit(DataContainer container)
+        public IActionResult SearchResult(DataContainer container)
         {
-            
+
             DbManager manager = new DbManager();
-            DataContainer returnData = new DataContainer();
-            returnData = manager.GetData(container);
-           
-            return View(returnData);
-          
+            string tempSerial;
+            if (container.SerialNumber != null)
+            {
+                tempSerial = container.SerialNumber;
+                HttpContext.Session.SetString("tempSerial", tempSerial);
+            }
+            else
+            {
+                tempSerial = "";
+                HttpContext.Session.SetString("tempSerial", tempSerial);
+            }
+
+            List<DataContainer> containers = manager.GetDataFromserial(container);
+            Debug.Write(containers);
+            return View(containers);
+
         }
 
-        public void test(object sender, EventArgs e)
+        [HttpPost]
+        public IActionResult Edit(string submit)
         {
-            Debug.Write("this works");
+            int caseID = Convert.ToInt32(submit);
+            DbManager manager = new DbManager();
+            DataContainer container = manager.GetDataFromCaseID(caseID);
+            return View(container);
+
         }
 
         [HttpPost]
         public IActionResult Confirmation(DataContainer container)
         {
             DbManager manager = new DbManager();
-            manager.SetData(container);
+            if (container.CaseID > 0)
+            {
+                manager.SetData(container);
 
-            
+            }
+            else
+            {
+                manager.CreateData(container);
+            }
+
+
             return View(container);
         }
 
-
+        [HttpPost]
+        public IActionResult Create()
+        {
+            string serial = HttpContext.Session.GetString("tempSerial");
+            DataContainer container = new DataContainer();
+            container.SerialNumber = serial;
+            return View(container);
+        }
 
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Overview()
+        {
+            DbManager manager = new DbManager();
+            List<DataContainer> containers = manager.GetAllData();
+            return View(containers);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

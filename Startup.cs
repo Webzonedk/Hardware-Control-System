@@ -35,6 +35,11 @@ namespace RedCrossItCheckingSystem
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            //Used for session
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +58,10 @@ namespace RedCrossItCheckingSystem
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+           
+            //used for session
+            app.UseSession();
+            
             app.UseRouting();
 
             app.UseAuthentication();

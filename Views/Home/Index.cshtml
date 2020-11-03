@@ -5,7 +5,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <form asp-action="Edit">
+    <form asp-action="Searchresult">
         <div method="post" asp-validation-summary="ModelOnly"></div>
         <div>
             <div class="row">
@@ -16,55 +16,10 @@
                     <input asp-for="SerialNumber" />
                 </div>
             </div>
-            @*<div class="row">
-                    <div class="col-md-2">
-                        <label asp-for="CaseID"></label>
-                    </div>
-                    <div class="col-md-1">
-                        <input asp-for="CaseID" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <label asp-for="Department"></label>
-                    </div>
-                    <div class="col-md-1">
-                        <input asp-for="Department" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <label asp-for="Description"></label>
-                    </div>
-                    <div class="col-md-1">
-                        <input asp-for="Description" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <label asp-for="DateStart"></label>
-                    </div>
-                    <div class="col-md-1">
-                        <input asp-for="DateStart" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <label asp-for="CaseID"></label>
-                    </div>
-                    <div class="col-md-1">
-                        <input asp-for="CaseID" />
-                    </div>
-                </div>*@
-
-
-            <input class="btn btn-primary" type="submit" value="søg" onclick="test"/>
+           
+            <button class="btn btn-primary" type="submit" name="submit">Søg</button>
         </div>
-        <div>
-
-            @*<label asp-for="@Model.SerialNumber"></label>
-                <span>@Model.SerialNumber</span>*@
-        </div>
+       
     </form>
 
    
