@@ -15,6 +15,7 @@ namespace RedCrossItCheckingSystem.Controllers
 {
     public class HomeController : Controller
     {
+        public bool IsLoggedIn;
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -25,15 +26,24 @@ namespace RedCrossItCheckingSystem.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            IsLoggedIn = Convert.ToBoolean(HttpContext.Session.GetString("loggedIn"));
 
-            return View();
+            if (IsLoggedIn)
+            {
+                return View();
+            }
+            else
+            {
+                return View("LoginError");
+            }
+                
         }
         [HttpPost]
         public IActionResult SearchResult(DataContainer container)
         {
 
-            bool loggedIn = Convert.ToBoolean(HttpContext.Session.GetString("loggedIn"));
-            if(loggedIn)
+            IsLoggedIn = Convert.ToBoolean(HttpContext.Session.GetString("loggedIn"));
+            if(IsLoggedIn)
             {
                 DbManager manager = new DbManager();
                 string tempSerial;
@@ -99,9 +109,18 @@ namespace RedCrossItCheckingSystem.Controllers
 
         public IActionResult Overview()
         {
-            DbManager manager = new DbManager();
-            List<DataContainer> containers = manager.GetAllData();
-            return View(containers);
+            IsLoggedIn = Convert.ToBoolean(HttpContext.Session.GetString("loggedIn"));
+            if(IsLoggedIn)
+            {
+                DbManager manager = new DbManager();
+                List<DataContainer> containers = manager.GetAllData();
+                return View(containers);
+            }
+            else
+            {
+                return View("LoginError");
+            }
+           
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -118,14 +137,14 @@ namespace RedCrossItCheckingSystem.Controllers
 
             if (validation)
             {
-                bool loggedIn = true;
-                HttpContext.Session.SetString("loggedIn", Convert.ToString(loggedIn));
+                IsLoggedIn = true;
+                HttpContext.Session.SetString("loggedIn", Convert.ToString(IsLoggedIn));
                 return View("Index");
             }
             else
             {
-                bool loggedIn = false;
-                HttpContext.Session.SetString("loggedIn", Convert.ToString(loggedIn));
+                IsLoggedIn = false;
+                HttpContext.Session.SetString("loggedIn", Convert.ToString(IsLoggedIn));
                 return View("Login");
             }
 
@@ -134,6 +153,13 @@ namespace RedCrossItCheckingSystem.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+
+        public IActionResult Logout()
+        {
+            bool logout = false;
+            HttpContext.Session.SetString("loggedIn", Convert.ToString(logout));
+            return View("Login");
         }
     }
 }

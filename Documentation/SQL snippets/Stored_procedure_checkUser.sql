@@ -18,23 +18,15 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE CreateData
-	@serialNumber varchar(50),
-	@department varchar (50),
-	@dateStart date,
-	@dateEnd date,
-	@status varchar(50),
-	@deviceName varchar(50),
-	@deviceType varchar(50),
-	@accessories varchar(50),
-	@employeeName varchar(50),
-	@description varchar (1000)
+CREATE PROCEDURE CheckUserLogin 
+	
+	@userName varchar(50),
+	@password varchar(50)
 AS
 BEGIN
-	insert into [Case](serialnumber,department,dateStart,dateEnd,status,deviceName,deviceType,accessories) 
-values(@serialNumber,@department,@dateStart,@dateEnd,@status,@deviceName,@deviceType,@accessories);
 
-insert into Log(caseID,employeeName,description)
-values((select IDENT_CURRENT('[Case]')),@employeeName,@description);
+	select * from Users
+		where userName = @userName
+		and password = HASHBYTES('sha2_512',@password);
 END
 GO

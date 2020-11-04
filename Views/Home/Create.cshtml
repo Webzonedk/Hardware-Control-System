@@ -1,7 +1,8 @@
 ﻿@model RedCrossItCheckingSystem.Models.DataContainer
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Opret";
 }
+<h2>Opret</h2>
 
 <form asp-action="Confirmation">
     <div method="post" asp-validation-summary="ModelOnly"></div>
@@ -9,7 +10,7 @@
     <div>
         <div class="row">
             <div class="col-md-2">
-                <label asp-for="SerialNumber"></label>
+                <label>Serienummer</label>
             </div>
             <div class="col-md-1">
                 <input asp-for="SerialNumber" />
@@ -17,55 +18,7 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <label asp-for="Department"></label>
-            </div>
-            <div class="col-md-1">
-                <input asp-for="Department" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <label asp-for="EmplyeeName"></label>
-            </div>
-            <div class="col-md-1">
-                <input asp-for="EmplyeeName" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <label asp-for="Description"></label>
-            </div>
-            <div class="col-md-1">
-                <input asp-for="Description" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <label asp-for="DateStart"></label>
-            </div>
-            <div class="col-md-1">
-                <input asp-for="DateStart" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <label asp-for="DateEnd"></label>
-            </div>
-            <div class="col-md-1">
-                <input asp-for="DateEnd" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <label asp-for="DeviceName"></label>
-            </div>
-            <div class="col-md-1">
-                <input asp-for="DeviceName" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <label asp-for="DeviceType"></label>
+                <label>Kategori</label>
             </div>
             <div class="col-md-1">
                 <input asp-for="DeviceType" />
@@ -73,7 +26,7 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <label asp-for="Accessories"></label>
+                <label>Tilbehør</label>
             </div>
             <div class="col-md-1">
                 <input asp-for="Accessories" />
@@ -81,10 +34,58 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <label asp-for="Status"></label>
+                <label>Afdeling</label>
+            </div>
+            <div class="col-md-1">
+                <input asp-for="Department" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Medarbejder</label>
+            </div>
+            <div class="col-md-1">
+                <input asp-for="EmplyeeName" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Start Dato</label>
+            </div>
+            <div class="col-md-1">
+                <input asp-for="DateStart" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Slut Dato</label>
+            </div>
+            <div class="col-md-1">
+                <input asp-for="DateEnd" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Model</label>
+            </div>
+            <div class="col-md-1">
+                <input asp-for="DeviceName" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Status</label>
             </div>
             <div class="col-md-1">
                 <input asp-for="Status" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Beskrivelse</label>
+            </div>
+            <div class="col-md-1">
+                <textarea asp-for="Description" rows="5" cols="40"></textarea>
             </div>
         </div>
 

@@ -153,6 +153,7 @@ namespace RedCrossItCheckingSystem.DAL
 
         public void CreateData(DataContainer container)
         {
+
             SqlConnection con = new SqlConnection(ItemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("CreateData", con);
