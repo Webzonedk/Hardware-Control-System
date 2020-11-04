@@ -32,22 +32,31 @@ namespace RedCrossItCheckingSystem.Controllers
         public IActionResult SearchResult(DataContainer container)
         {
 
-            DbManager manager = new DbManager();
-            string tempSerial;
-            if (container.SerialNumber != null)
+            bool loggedIn = Convert.ToBoolean(HttpContext.Session.GetString("loggedIn"));
+            if(loggedIn)
             {
-                tempSerial = container.SerialNumber;
-                HttpContext.Session.SetString("tempSerial", tempSerial);
+                DbManager manager = new DbManager();
+                string tempSerial;
+                if (container.SerialNumber != null)
+                {
+                    tempSerial = container.SerialNumber;
+                    HttpContext.Session.SetString("tempSerial", tempSerial);
+                }
+                else
+                {
+                    tempSerial = "";
+                    HttpContext.Session.SetString("tempSerial", tempSerial);
+                }
+
+                List<DataContainer> containers = manager.GetDataFromserial(container);
+                Debug.Write(containers);
+                return View(containers);
             }
             else
             {
-                tempSerial = "";
-                HttpContext.Session.SetString("tempSerial", tempSerial);
+                return View("LoginError");
             }
-
-            List<DataContainer> containers = manager.GetDataFromserial(container);
-            Debug.Write(containers);
-            return View(containers);
+           
 
         }
 
@@ -99,6 +108,32 @@ namespace RedCrossItCheckingSystem.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public IActionResult CheckUser(UserData user)
+        {
+            DbManager manager = new DbManager();
+            bool validation = manager.UserLogin(user);
+
+            if (validation)
+            {
+                bool loggedIn = true;
+                HttpContext.Session.SetString("loggedIn", Convert.ToString(loggedIn));
+                return View("Index");
+            }
+            else
+            {
+                bool loggedIn = false;
+                HttpContext.Session.SetString("loggedIn", Convert.ToString(loggedIn));
+                return View("Login");
+            }
+
+        }
+
+        public IActionResult Login()
+        {
+            return View();
         }
     }
 }

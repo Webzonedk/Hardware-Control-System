@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-RedCrossItCheckingSystem-00B51B1A-69FA-4576-9053-FDDDFFE92C37</UserSecretsId>
+    <StartupObject>RedCrossItCheckingSystem.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

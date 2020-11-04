@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Routing;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Data.SqlClient;
 using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using RedCrossItCheckingSystem.Models;
@@ -13,22 +14,24 @@ namespace RedCrossItCheckingSystem.DAL
 {
     public class DbManager
     {
-        string connectionstring = "data source = (local); initial catalog =RedCrossItCheckingSystemdb; integrated security = sspi";
+        string ItemsConnectionString = "data source = (local); initial catalog =RedCrossItCheckingSystemdb; integrated security = sspi";
+        string UsersConnectionString = "data source = (local); initial catalog =RedCrossUsers; integrated security = sspi";
+
         public List<DataContainer> GetDataFromserial(DataContainer container)
         {
-            SqlConnection con = new SqlConnection(connectionstring);
+            SqlConnection con = new SqlConnection(ItemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("GetData", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.Add("@SerialNumber", System.Data.SqlDbType.VarChar).Value = container.SerialNumber;
 
             List<DataContainer> containers = new List<DataContainer>();
-            
+
             try
             {
                 SqlDataReader reader = cmd.ExecuteReader();
                 int counter = 0;
-                
+
                 //read the data and count for every row
                 while (reader.Read())
                 {
@@ -51,19 +54,19 @@ namespace RedCrossItCheckingSystem.DAL
                     output.DateEnd = enddate;
 
                     counter++;
-                    
-                   
+
+
                     // check if reader has rows
                     if (counter > 0)
                     {
                         output.IsValid = true;
                         containers.Add(output);
-                        
+
                     }
                 }
 
                 Debug.Write(containers.Count);
-              
+
             }
             catch (Exception)
             {
@@ -79,7 +82,7 @@ namespace RedCrossItCheckingSystem.DAL
 
         public DataContainer GetDataFromCaseID(int caseID)
         {
-            SqlConnection con = new SqlConnection(connectionstring);
+            SqlConnection con = new SqlConnection(ItemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("GetData_caseID", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -90,7 +93,7 @@ namespace RedCrossItCheckingSystem.DAL
             try
             {
                 SqlDataReader reader = cmd.ExecuteReader();
-                
+
 
                 //read the data and count for every row
                 while (reader.Read())
@@ -123,12 +126,12 @@ namespace RedCrossItCheckingSystem.DAL
 
             con.Close();
             return container;
-             
+
         }
 
         public void SetData(DataContainer container)
         {
-            SqlConnection con = new SqlConnection(connectionstring);
+            SqlConnection con = new SqlConnection(ItemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("SetData", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -150,7 +153,7 @@ namespace RedCrossItCheckingSystem.DAL
 
         public void CreateData(DataContainer container)
         {
-            SqlConnection con = new SqlConnection(connectionstring);
+            SqlConnection con = new SqlConnection(ItemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("CreateData", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -168,13 +171,47 @@ namespace RedCrossItCheckingSystem.DAL
             cmd.ExecuteNonQuery();
         }
 
+        public bool UserLogin(UserData user)
+        {
+            SqlConnection con = new SqlConnection(UsersConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("CheckUserLogin", con);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.Add("@userName", System.Data.SqlDbType.VarChar).Value = user.UserName;
+            cmd.Parameters.Add("@password", System.Data.SqlDbType.VarChar).Value = user.Password;
+
+
+            try
+            {
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    Debug.Write("username exists");
+                    con.Close();
+                    return true;
+                }
+                else
+                {
+                    Debug.Write("no username or password");
+                    con.Close();
+                    return false;
+                }
+
+            }
+            catch (Exception)
+            {
+                Debug.Write("error");
+                return false;
+            }
+        }
+
         public List<DataContainer> GetAllData()
         {
-            SqlConnection con = new SqlConnection(connectionstring);
+            SqlConnection con = new SqlConnection(ItemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("GetAllData", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-           
+
             List<DataContainer> containers = new List<DataContainer>();
 
             try
@@ -202,7 +239,7 @@ namespace RedCrossItCheckingSystem.DAL
                     DateTime enddate = reader.GetDateTime(reader.GetOrdinal("dateEnd"));
                     output.DateStart = startdate;
                     output.DateEnd = enddate;
-                    
+
                     counter++;
 
 
@@ -214,7 +251,7 @@ namespace RedCrossItCheckingSystem.DAL
                     }
                 }
 
-               // Debug.Write(containers.Count);
+                // Debug.Write(containers.Count);
 
             }
             catch (Exception)
