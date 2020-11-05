@@ -11,7 +11,7 @@
     <div method="post" asp-validation-summary="ModelOnly"></div>
     <div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <label>Serienummer</label>
             </div>
             <div class="col-md-1">
@@ -63,7 +63,7 @@
                 <label>Start Dato</label>
             </div>
             <div class="col-md-1">
-                <input asp-for="DateStart" readonly />
+                <input asp-for="DateStart" type="date" readonly />
             </div>
         </div>
         <div class="row">
@@ -71,7 +71,7 @@
                 <label>Slut Dato</label>
             </div>
             <div class="col-md-1">
-                <input asp-for="DateEnd" readonly />
+                <input asp-for="DateEnd" type="date" readonly />
             </div>
         </div>
 

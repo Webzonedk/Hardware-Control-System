@@ -40,18 +40,18 @@
 
 
                 <span class="col-md-2">
-                    <input asp-for="@Model[i].SerialNumber" />
+                    <input asp-for="@Model[i].SerialNumber" readonly/>
                 </span>
 
                 <span class="col-md-2">
-                    <input asp-for="@Model[i].DeviceName" />
+                    <input asp-for="@Model[i].DeviceName" readonly/>
                 </span>
 
                 <span class="col-md-2">
-                    <input asp-for="@Model[i].DeviceType" />
+                    <input asp-for="@Model[i].DeviceType" readonly/>
                 </span>
                 <span class="col-md-6">
-                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID" style="width=10%">Rediger</button>
+                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Rediger</button>
                 </span>
 
 

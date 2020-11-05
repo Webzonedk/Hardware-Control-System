@@ -5,11 +5,13 @@ a.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;
+    color: #ff0000;
 }
+
 
 /* Provide sufficient contrast against white background */
 a {
-    color: #0366d6;
+    /* color: #ffffff;*/
 }
 
 .btn-primary {
@@ -18,12 +20,33 @@ a {
     border-color: #1861ac;
 }
 
+.nav-link {
+    color: #ffffff;
+}
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
+    color: #ff0000;
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
 
+.navbar {
+    background-color: #1c289a;
+}
+
+
+    /*.navbar a {
+    color: white;
+}*/
+
+    .navbar a:hover {
+        color: #ff0000;
+    }
+
+/*.active {
+    background-color: #ffffff;
+    
+}*/
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -53,6 +76,13 @@ button.accept-policy {
     line-height: inherit;
 }
 
+.btn {
+    background-color: #1c289a;
+}
+
+    .btn:hover {
+        background-color: #ff0000;
+    }
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -64,6 +94,105 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
 }
+.label{
+    font-weight:bold;
+}
+.colWidth100 {
+    width: 100%;
+    height: 95%;
+}
+
+.overViewHeader {
+    font-weight: bold;
+    border: solid;
+    border-width: 2px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-color: #1c289a;
+}
+
+.overviewBody {
+    border-left: solid;
+    border-right: solid;
+    border-left-width: 2px;
+    border-left-color: #1c289a;
+    border-right-color: #1c289a;
+    border-right-width: 2px;
+}
+
+.overViewFooter {
+    height: 10px;
+    border-left: solid;
+    border-left-width: 2px;
+    border-left-color: #1c289a;
+    border-right: solid;
+    border-right-width: 2px;
+    border-right-color: #1c289a;
+    border-bottom:solid;
+    border-bottom-color: #1c289a;
+    border-bottom-width: 2px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+   
+}
+
+
+.col50 {
+    width: 50px;
+    padding: 2px 7px 2px 7px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+
+.col75 {
+    width: 75px;
+    padding: 2px 7px 2px 7px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.col100 {
+    width: 100px;
+    padding: 2px 7px 2px 7px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.col125 {
+    width: 125px;
+    padding: 2px 7px 2px 7px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.col150 {
+    width: 150px;
+    padding: 2px 7px 2px 7px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.col175 {
+    width: 175px;
+    padding: 2px 7px 2px 7px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
 .footer {
     position: absolute;
@@ -71,6 +200,8 @@ body {
     width: 100%;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
+    background-color: #1c289a;
+    color: #ff0000;
 }
 
 .searchResult {
