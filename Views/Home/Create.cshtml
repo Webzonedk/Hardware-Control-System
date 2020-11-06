@@ -9,82 +9,92 @@
 
     <div>
         <div class="row">
-            <div class="col-md-2">
-                <label>Serienummer</label>
+            <div class="col-md-2 label">
+                <label>Serienummer:</label>
             </div>
-            <div class="col-md-1">
-                <input asp-for="SerialNumber" />
+            <div class="col-md-2">
+                <input class="colWidth100" asp-for="SerialNumber" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <label>Kategori</label>
+            <div class="col-md-2 label">
+                <label>Kategori:</label>
             </div>
-            <div class="col-md-1">
-                <input asp-for="DeviceType" />
+            <div class="col-md-2">
+                <input class="colWidth100" asp-for="DeviceType" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <label>Tilbehør</label>
+            <div class="col-md-2 label">
+                <label>Model:</label>
             </div>
-            <div class="col-md-1">
-                <input asp-for="Accessories" />
+            <div class="col-md-2">
+                <input class="colWidth100" asp-for="DeviceName" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <label>Afdeling</label>
+            <div class="col-md-2 label">
+                <label>Tilbehør:</label>
             </div>
-            <div class="col-md-1">
-                <input asp-for="Department" />
+            <div class="col-md-2">
+                <input class="colWidth100" asp-for="Accessories" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <label>Medarbejder</label>
+            <div class="col-md-2 label">
+                <label>Afdeling:</label>
             </div>
-            <div class="col-md-1">
-                <input asp-for="EmplyeeName" />
+            <div class="col-md-2">
+                <select class="colWidth100" asp-for="Department">
+                    <option>Vælg afd</option>
+                    <option>IT</option>
+                    <option>EL</option>
+                </select>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <label>Start Dato</label>
+            <div class="col-md-2 label">
+                <label>Medarbejder:</label>
             </div>
-            <div class="col-md-1">
-                <input asp-for="DateStart" />
+            <div class="col-md-2">
+                <input class="colWidth100" asp-for="EmplyeeName" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <label>Slut Dato</label>
+            <div class="col-md-2 label">
+                <label>Start Dato:</label>
             </div>
-            <div class="col-md-1">
-                <input asp-for="DateEnd" />
+            <div class="col-md-2">
+                <input class="colWidth100" asp-for="DateStart" type="date" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <label>Model</label>
+            <div class="col-md-2 label">
+                <label>Slut Dato:</label>
             </div>
-            <div class="col-md-1">
-                <input asp-for="DeviceName" />
+            <div class="col-md-2">
+                <input class="colWidth100" asp-for="DateEnd" type="date" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 label">
+                <label>Status:</label>
+            </div>
+            <div class="col-md-2">
+                <select class="colWidth100" asp-for="Status">
+                    <option>Vælg Status</option>
+                    <option>Igang</option>
+                    <option>Defekt</option>
+                    <option>OK</option>
+                </select>
             </div>
         </div>
         <div class="row">
+            <div class="col-md-2 label">
+                <label>Beskrivelse:</label>
+            </div>
             <div class="col-md-2">
-                <label>Status</label>
-            </div>
-            <div class="col-md-1">
-                <input asp-for="Status" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <label>Beskrivelse</label>
-            </div>
-            <div class="col-md-1">
                 <textarea asp-for="Description" rows="5" cols="40"></textarea>
             </div>
         </div>
