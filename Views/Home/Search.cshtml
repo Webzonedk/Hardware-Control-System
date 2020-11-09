@@ -1,0 +1,58 @@
+﻿@model RedCrossItCheckingSystem.Models.DataContainer
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+
+    <h2>Indtast hardwarens Serienummer</h2>
+    <h4>for at se om den allerede er oprettet</h4>
+    <br />
+</div>
+
+<form asp-action="Searchresult" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div class="row">
+
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+
+
+            <div class="row">
+                <div class=" col d-flex justify-content-center">
+                    <label>SerieNummer:&ensp; </label>
+                    <input asp-for="SerialNumber" />
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <button class="btn btn-primary" type="submit" name="submit">Søg</button>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-3">
+
+        </div>
+
+
+
+
+    </div>
+
+</form>
+
+
+
+
+
+@section scripts {
+    @{await Html.RenderPartialAsync("_validationScriptsPartial");}
+}

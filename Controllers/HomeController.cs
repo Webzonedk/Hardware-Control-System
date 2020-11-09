@@ -26,6 +26,12 @@ namespace RedCrossItCheckingSystem.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Search()
+        {
             IsLoggedIn = Convert.ToBoolean(HttpContext.Session.GetString("loggedIn"));
 
             if (IsLoggedIn)
@@ -36,7 +42,7 @@ namespace RedCrossItCheckingSystem.Controllers
             {
                 return View("LoginError");
             }
-                
+
         }
         [HttpPost]
         public IActionResult SearchResult(DataContainer container)
