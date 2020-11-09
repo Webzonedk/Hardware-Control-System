@@ -5,7 +5,7 @@ a.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;
-    color: #ff0000;
+    color: #fd0202;
 }
 
 
@@ -22,10 +22,11 @@ a {
 
 .nav-link {
     color: #ffffff;
+    font-weight:bold;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #ff0000;
+    color: #fd0202;
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
@@ -40,7 +41,7 @@ a {
 }*/
 
     .navbar a:hover {
-        color: #ff0000;
+        color: #fd0202;
     }
 
 /*.active {
@@ -81,7 +82,7 @@ button.accept-policy {
 }
 
     .btn:hover {
-        background-color: #ff0000;
+        background-color: #fd0202;
     }
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -201,10 +202,19 @@ body {
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
     background-color: #1c289a;
-    color: #ff0000;
+    color: #fd0202;
 }
 
 .searchResult {
     margin-top: 7px;
     margin-bottom: 7px;
+}
+
+.ImgBG {
+    background-color: #1c209a;
+    padding: 10px 10px 10px 10px;
+    border: solid;
+    border-width: 2px;
+    border-color: #1c289a;
+    border-radius: 10px;
 }
