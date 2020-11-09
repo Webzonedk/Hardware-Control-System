@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Routing;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using RedCrossItCheckingSystem.Models;
 using System;
@@ -14,12 +15,20 @@ namespace RedCrossItCheckingSystem.DAL
 {
     public class DbManager
     {
-        string ItemsConnectionString = "data source = (local); initial catalog =RedCrossItCheckingSystemdb; integrated security = sspi";
-        string UsersConnectionString = "data source = (local); initial catalog =RedCrossUsers; integrated security = sspi";
+       private IConfiguration configuration;
 
-        public List<DataContainer> GetDataFromserial(DataContainer container)
+        public DbManager(IConfiguration _configuration)
         {
-            SqlConnection con = new SqlConnection(ItemsConnectionString);
+           this.configuration = _configuration;
+        }
+
+        
+        
+
+        internal List<DataContainer> GetDataFromserial(DataContainer container)
+        {
+            string itemsConnectionString = configuration.GetConnectionString("ItemDBContext");
+            SqlConnection con = new SqlConnection(itemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("GetData", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -80,9 +89,10 @@ namespace RedCrossItCheckingSystem.DAL
             return containers;
         }
 
-        public DataContainer GetDataFromCaseID(int caseID)
+        internal DataContainer GetDataFromCaseID(int caseID)
         {
-            SqlConnection con = new SqlConnection(ItemsConnectionString);
+            string itemsConnectionString = configuration.GetConnectionString("ItemDBContext");
+            SqlConnection con = new SqlConnection(itemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("GetData_caseID", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -129,9 +139,10 @@ namespace RedCrossItCheckingSystem.DAL
 
         }
 
-        public void SetData(DataContainer container)
+        internal void SetData(DataContainer container)
         {
-            SqlConnection con = new SqlConnection(ItemsConnectionString);
+            string itemsConnectionString = configuration.GetConnectionString("ItemDBContext");
+            SqlConnection con = new SqlConnection(itemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("SetData", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -151,10 +162,11 @@ namespace RedCrossItCheckingSystem.DAL
             cmd.ExecuteNonQuery();
         }
 
-        public void CreateData(DataContainer container)
+        internal void CreateData(DataContainer container)
         {
+            string itemsConnectionString = configuration.GetConnectionString("ItemDBContext");
 
-            SqlConnection con = new SqlConnection(ItemsConnectionString);
+            SqlConnection con = new SqlConnection(itemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("CreateData", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -172,9 +184,10 @@ namespace RedCrossItCheckingSystem.DAL
             cmd.ExecuteNonQuery();
         }
 
-        public bool UserLogin(UserData user)
+        internal bool UserLogin(UserData user)
         {
-            SqlConnection con = new SqlConnection(UsersConnectionString);
+            string usersConnectionString = "UserDBContext";
+            SqlConnection con = new SqlConnection(usersConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("CheckUserLogin", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -206,9 +219,10 @@ namespace RedCrossItCheckingSystem.DAL
             }
         }
 
-        public List<DataContainer> GetAllData()
+        internal List<DataContainer> GetAllData()
         {
-            SqlConnection con = new SqlConnection(ItemsConnectionString);
+            string itemsConnectionString = configuration.GetConnectionString("ItemDBContext");
+            SqlConnection con = new SqlConnection(itemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("GetAllData", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
