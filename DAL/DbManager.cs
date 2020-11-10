@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
+using RedCrossItCheckingSystem.Data;
 using RedCrossItCheckingSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -15,19 +16,20 @@ namespace RedCrossItCheckingSystem.DAL
 {
     public class DbManager
     {
-       private IConfiguration configuration;
-
+        private readonly IConfiguration configuration;
+        private readonly string itemsConnectionString;
+        private readonly string usersConnectionString;
         public DbManager(IConfiguration _configuration)
         {
-           this.configuration = _configuration;
+            this.configuration = _configuration;
+            itemsConnectionString = configuration.GetConnectionString("ItemDBContext");
+            usersConnectionString = configuration.GetConnectionString("UserDBContext");
         }
 
-        
-        
+
 
         internal List<DataContainer> GetDataFromserial(DataContainer container)
         {
-            string itemsConnectionString = configuration.GetConnectionString("ItemDBContext");
             SqlConnection con = new SqlConnection(itemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("GetData", con);
@@ -91,7 +93,6 @@ namespace RedCrossItCheckingSystem.DAL
 
         internal DataContainer GetDataFromCaseID(int caseID)
         {
-            string itemsConnectionString = configuration.GetConnectionString("ItemDBContext");
             SqlConnection con = new SqlConnection(itemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("GetData_caseID", con);
@@ -141,7 +142,6 @@ namespace RedCrossItCheckingSystem.DAL
 
         internal void SetData(DataContainer container)
         {
-            string itemsConnectionString = configuration.GetConnectionString("ItemDBContext");
             SqlConnection con = new SqlConnection(itemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("SetData", con);
@@ -164,8 +164,6 @@ namespace RedCrossItCheckingSystem.DAL
 
         internal void CreateData(DataContainer container)
         {
-            string itemsConnectionString = configuration.GetConnectionString("ItemDBContext");
-
             SqlConnection con = new SqlConnection(itemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("CreateData", con);
@@ -186,7 +184,6 @@ namespace RedCrossItCheckingSystem.DAL
 
         internal bool UserLogin(UserData user)
         {
-            string usersConnectionString = "UserDBContext";
             SqlConnection con = new SqlConnection(usersConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("CheckUserLogin", con);
@@ -221,7 +218,6 @@ namespace RedCrossItCheckingSystem.DAL
 
         internal List<DataContainer> GetAllData()
         {
-            string itemsConnectionString = configuration.GetConnectionString("ItemDBContext");
             SqlConnection con = new SqlConnection(itemsConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("GetAllData", con);

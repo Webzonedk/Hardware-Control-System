@@ -29,12 +29,12 @@ namespace RedCrossItCheckingSystem
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
-
+            
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("ItemDBContext")))
+                options.UseSqlServer(Configuration.GetConnectionString("UserDBContext")))
                 .AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("UserDBContext")));
+                options.UseSqlServer(Configuration.GetConnectionString("ItemDBContext")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

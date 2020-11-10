@@ -16,18 +16,14 @@ namespace RedCrossItCheckingSystem.Controllers
     public class HomeController : Controller
     {
         public bool IsLoggedIn;
-        private IConfiguration configuration;
-        private readonly ILogger<HomeController> _logger;
-        //public IConfiguration configuration { get; }
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
-
+        private readonly IConfiguration configuration;
+      
         public HomeController(IConfiguration config)
         {
             this.configuration = config;
         }
+
+      
 
         [HttpGet]
         public IActionResult Index()
