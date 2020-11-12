@@ -51,18 +51,17 @@ namespace RedCrossItCheckingSystem.DAL
                     output.SerialNumber = (string)reader["serialNumber"];
                     output.CaseID = (int)reader["caseID"];
                     output.Accessories = (string)reader["accessories"];
-                    output.Department = (string)reader["department"];
-                    output.Description = (string)reader["description"];
                     output.DeviceName = (string)reader["deviceName"];
                     output.DeviceType = (string)reader["deviceType"];
-                    output.EmplyeeName = (string)reader["employeeName"];
                     output.Status = (string)reader["status"];
 
 
-                    DateTime startdate = reader.GetDateTime(reader.GetOrdinal("dateStart"));
-                    DateTime enddate = reader.GetDateTime(reader.GetOrdinal("dateEnd"));
-                    output.DateStart = startdate;
-                    output.DateEnd = enddate;
+                    //   output.Department = (string)reader["department"];
+                    // output.Description = (string)reader["description"];
+                    //   output.EmplyeeName = (string)reader["employeeName"];
+                    //  DateTime logDate = reader.GetDateTime(reader.GetOrdinal("logDate"));
+
+                    //  output.DateStart = startdate;
 
                     counter++;
 
@@ -112,19 +111,29 @@ namespace RedCrossItCheckingSystem.DAL
                     container.SerialNumber = (string)reader["serialNumber"];
                     container.CaseID = (int)reader["caseID"];
                     container.Accessories = (string)reader["accessories"];
-                    container.Department = (string)reader["department"];
-                    container.Description = (string)reader["description"];
                     container.DeviceName = (string)reader["deviceName"];
                     container.DeviceType = (string)reader["deviceType"];
-                    container.EmplyeeName = (string)reader["employeeName"];
                     container.Status = (string)reader["status"];
 
-
-                    DateTime startdate = reader.GetDateTime(reader.GetOrdinal("dateStart"));
-                    DateTime enddate = reader.GetDateTime(reader.GetOrdinal("dateEnd"));
-                    container.DateStart = startdate;
-                    container.DateEnd = enddate;
                     container.IsValid = true;
+                }
+
+                if (reader.NextResult())
+                {
+                    while (reader.Read())
+                    {
+                        DataLog log = new DataLog()
+                        {
+                            Description = (string)reader["description"],
+                            Department = (string)reader["department"],
+                            EmplyeeName = (string)reader["employeeName"],
+                            LogDate = reader.GetDateTime(reader.GetOrdinal("dateStart"))
+                        };
+
+                        container.DataLogs.Add(log);
+
+
+                    }
                 }
 
             }
@@ -229,30 +238,39 @@ namespace RedCrossItCheckingSystem.DAL
             {
                 SqlDataReader reader = cmd.ExecuteReader();
                 int counter = 0;
+                DataContainer output = new DataContainer();
 
                 //read the data and count for every row
                 while (reader.Read())
                 {
-                    DataContainer output = new DataContainer();
 
                     output.SerialNumber = (string)reader["serialNumber"];
                     output.CaseID = (int)reader["caseID"];
                     output.Accessories = (string)reader["accessories"];
-                    output.Department = (string)reader["department"];
-                    //output.Description = (string)reader["description"];
                     output.DeviceName = (string)reader["deviceName"];
                     output.DeviceType = (string)reader["deviceType"];
-                    output.EmplyeeName = (string)reader["employeeName"];
                     output.Status = (string)reader["status"];
 
-
-                    DateTime startdate = reader.GetDateTime(reader.GetOrdinal("dateStart"));
-                    DateTime enddate = reader.GetDateTime(reader.GetOrdinal("dateEnd"));
-                    output.DateStart = startdate;
-                    output.DateEnd = enddate;
-
                     counter++;
+                   
+                    //get all logs
+                    if (reader.NextResult())
+                    {
+                        while (reader.Read())
+                        {
+                            DataLog log = new DataLog()
+                            {
+                                Description = (string)reader["description"],
+                                Department = (string)reader["department"],
+                                EmplyeeName = (string)reader["employeeName"],
+                                LogDate = reader.GetDateTime(reader.GetOrdinal("dateStart"))
+                            };
 
+                            output.DataLogs.Add(log);
+
+
+                        }
+                    }
 
                     // check if reader has rows
                     if (counter > 0)
@@ -262,6 +280,7 @@ namespace RedCrossItCheckingSystem.DAL
                     }
                 }
 
+               
                 // Debug.Write(containers.Count);
 
             }

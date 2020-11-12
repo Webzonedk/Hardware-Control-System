@@ -3,10 +3,9 @@
     ViewData["Title"] = "Opret";
 }
 <h2>Opret</h2>
-
 <form asp-action="Confirmation">
     <div method="post" asp-validation-summary="ModelOnly"></div>
-
+    
     <div>
         <div class="row">
             <div class="col-md-2 label">
@@ -45,7 +44,7 @@
                 <label>Afdeling:</label>
             </div>
             <div class="col-md-2">
-                <select class="colWidth100" asp-for="Department">
+                <select class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count].Department">
                     <option>Vælg afd</option>
                     <option>IT</option>
                     <option>EL</option>
@@ -57,7 +56,7 @@
                 <label>Medarbejder:</label>
             </div>
             <div class="col-md-2">
-                <input class="colWidth100" asp-for="EmplyeeName" />
+                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count].EmplyeeName" />
             </div>
         </div>
         <div class="row">
@@ -65,16 +64,16 @@
                 <label>Start Dato:</label>
             </div>
             <div class="col-md-2">
-                <input class="colWidth100" asp-for="DateStart" type="date" />
+                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count].LogDate" type="date" />
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2 label">
+            @*<div class="col-md-2 label">
                 <label>Slut Dato:</label>
             </div>
             <div class="col-md-2">
                 <input class="colWidth100" asp-for="DateEnd" type="date" />
-            </div>
+            </div>*@
         </div>
 
         <div class="row">
@@ -95,7 +94,7 @@
                 <label>Beskrivelse:</label>
             </div>
             <div class="col-md-2">
-                <textarea asp-for="Description" rows="5" cols="40"></textarea>
+                <textarea asp-for="DataLogs[Model.DataLogs.Count].Description" rows="5" cols="40"></textarea>
             </div>
         </div>
 

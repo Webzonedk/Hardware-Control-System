@@ -112,6 +112,7 @@ namespace RedCrossItCheckingSystem.Controllers
             string serial = HttpContext.Session.GetString("tempSerial");
             DataContainer container = new DataContainer();
             container.SerialNumber = serial;
+            container.DataLogs.Add(new DataLog());
             return View(container);
         }
 
