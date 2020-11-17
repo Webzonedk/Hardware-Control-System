@@ -17,13 +17,13 @@ namespace RedCrossItCheckingSystem.Controllers
     {
         public bool IsLoggedIn;
         private readonly IConfiguration configuration;
-      
+
         public HomeController(IConfiguration config)
         {
             this.configuration = config;
         }
 
-      
+
 
         [HttpGet]
         public IActionResult Index()
@@ -51,7 +51,7 @@ namespace RedCrossItCheckingSystem.Controllers
         {
 
             IsLoggedIn = Convert.ToBoolean(HttpContext.Session.GetString("loggedIn"));
-            if(IsLoggedIn)
+            if (IsLoggedIn)
             {
                 DbManager manager = new DbManager(configuration);
                 string tempSerial;
@@ -74,7 +74,7 @@ namespace RedCrossItCheckingSystem.Controllers
             {
                 return View("LoginError");
             }
-           
+
 
         }
 
@@ -84,6 +84,10 @@ namespace RedCrossItCheckingSystem.Controllers
             int caseID = Convert.ToInt32(submit);
             DbManager manager = new DbManager(configuration);
             DataContainer container = manager.GetDataFromCaseID(caseID);
+
+
+            container.DataLogs.Add(new DataLog());
+            Debug.WriteLine(container.DataLogs[container.DataLogs.Count - 1]);
             return View(container);
 
         }
@@ -91,6 +95,7 @@ namespace RedCrossItCheckingSystem.Controllers
         [HttpPost]
         public IActionResult Confirmation(DataContainer container)
         {
+            Debug.WriteLine(container.DataLogs.Count);
             DbManager manager = new DbManager(configuration);
             if (container.CaseID > 0)
             {
@@ -113,13 +118,14 @@ namespace RedCrossItCheckingSystem.Controllers
             DataContainer container = new DataContainer();
             container.SerialNumber = serial;
             container.DataLogs.Add(new DataLog());
+            Debug.Write(container.DataLogs.Count);
             return View(container);
         }
 
         public IActionResult Overview()
         {
             IsLoggedIn = Convert.ToBoolean(HttpContext.Session.GetString("loggedIn"));
-            if(IsLoggedIn)
+            if (IsLoggedIn)
             {
                 DbManager manager = new DbManager(configuration);
                 List<DataContainer> containers = manager.GetAllData();
@@ -129,7 +135,7 @@ namespace RedCrossItCheckingSystem.Controllers
             {
                 return View("LoginError");
             }
-           
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

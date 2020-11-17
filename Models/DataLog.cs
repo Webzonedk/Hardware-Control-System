@@ -7,6 +7,7 @@ namespace RedCrossItCheckingSystem.Models
 {
     public class DataLog
     {
+        private int id;
         private string department;
         private string emplyeeName;
         private string description;
@@ -16,5 +17,11 @@ namespace RedCrossItCheckingSystem.Models
         public string EmplyeeName { get => emplyeeName; set => emplyeeName = value; }
         public string Description { get => description; set => description = value; }
         public DateTime LogDate { get => logDate; set => logDate = value; }
+        public int Id { get => id; set => id = value; }
+
+        public DataLog()
+        {
+            logDate = DateTime.Now;
+        }
     }
 }

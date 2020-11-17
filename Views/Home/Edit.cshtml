@@ -1,117 +1,262 @@
 ﻿@model RedCrossItCheckingSystem.Models.DataContainer
+
 @{
     ViewData["Title"] = "Rediger";
 }
-<h2>Rediger</h2>
 
+
+@{ string date = new string("2020-11-16"); }
 <form asp-action="Confirmation">
     <div method="post" asp-validation-summary="ModelOnly"></div>
+    <div class="row">
+        <div class="col-md-5 ">
 
+            <div class="col-md-12 inputFieldLeft">
+                <div class="sidePadding">
+                    <h3>Rediger sag</h3>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Sagsnummer:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input class="colWidth100" asp-for="CaseID" readonly />
+                        </div>
+                        <div class="col-md-3 label">
+                            <label>Aktiver</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Serienummer:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="serialId" class="colWidth100" asp-for="SerialNumber" readonly />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="switch">
+                                <input id="checkSerial" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Kategori:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="typeId" class="colWidth100" asp-for="DeviceType" readonly />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="switch">
+                                <input id="checkType" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Model:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="deviceId" class="colWidth100" asp-for="DeviceName" readonly />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="switch">
+                                <input id="checkDevice" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Tilbehør:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="accesoriesId" class="colWidth100" asp-for="Accessories" readonly />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="switch">
+                                <input id="checkAccessories" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+        <div class="col-md-2">
+            <div class="buttomCenter">
+                <input class="btn btn-primary " type="submit" value="Gem" />
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="col-md-5 ">
+
+            <div class="col-md-12 inputFieldRight">
+                <h4>Tilføj ny hændelse</h4>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label>Afdeling:</label>
+                    </div>
+                    <div class="col-md-5">
+                        <select class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count - 1].Department">
+                            <option>Vælg afd</option>
+                            <option>IT</option>
+                            <option>EL</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label>Medarbejder:</label>
+                    </div>
+                    <div class="col-md-5">
+                        <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count - 1].EmplyeeName" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label> Dato:</label>
+                    </div>
+                    <div class="col-md-5">
+                        <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].LogDate =@date" readonly type="date" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label>Status:</label>
+                    </div>
+                    <div class="col-md-5">
+                        <select class="colWidth100" asp-for="Status">
+                            <option>Vælg Status</option>
+                            <option>Igang</option>
+                            <option>Defekt</option>
+                            <option>OK</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label>Beskrivelse:</label>
+                    </div>
+                    <div class="col-md-5">
+                        <textarea asp-for="DataLogs[Model.DataLogs.Count - 1].Description" rows="4" cols="30"></textarea>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>-
+
+    
+
+
+
+
+
+    <br />
+    <h2>Hændelsesforløb:</h2>
     <div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Sagsnummer:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="CaseID" readonly />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Serienummer:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="SerialNumber" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Kategori:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DeviceType" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Model:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DeviceName" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Tilbehør:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="Accessories" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Afdeling:</label>
-            </div>
-            <div class="col-md-2">
-                <select class="colWidth100" asp-for="Department" >
-                    <option>Vælg afd</option>
-                    <option>IT</option>
-                    <option>EL</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Medarbejder:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="EmplyeeName" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Start Dato:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DateStart" type="date" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Slut Dato:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DateEnd" type="date" />
-            </div>
-        </div>
+        @*<div method="post" asp-validation-summary="ModelOnly"></div>*@
+        @{var rowcol = ""; }
+        <div>
+            @for (int i = 0; i < Model.DataLogs.Count - 1; i++)
+            {
 
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Status:</label>
-            </div>
-            <div class="col-md-2" >
-                <select class="colWidth100" asp-for="Status" >
-                    <option>Vælg Status</option>
-                    <option>Igang</option>
-                    <option>Defekt</option>
-                    <option>OK</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Beskrivelse:</label>
-            </div>
-            <div class="col-md-2">
-                <textarea asp-for="Description" rows="5" cols="40"></textarea>
-            </div>
-        </div>
+                if (i % 2 == 0)
+                {
+                    rowcol = " #dadeff";
+                }
+                else
+                {
+                    rowcol = "#eeefff";
 
-        <input class="btn btn-primary" type="submit" value="Gem" />
+                }
+
+                <div class="editList sidePadding" style="background-color:@rowcol;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-3 label">
+                                    <label>Afdeling:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="colWidth100" asp-for="DataLogs[i].Department" readonly />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 label">
+                                    <label>Medarbejder:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="colWidth100" asp-for="DataLogs[i].EmplyeeName" readonly />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 label">
+                                    <label>Dato:</label>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <input class="colWidth100" asp-for="DataLogs[i].LogDate" type="date" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-3 label">
+                                    <label>Beskrivelse:</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <textarea asp-for="DataLogs[i].Description" rows="4" cols="40" readonly></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            }
+
+        </div>
     </div>
 
 </form>
 
+<script src="~/js/JavaScript.js"></script>
+
+
+
 @section scripts {
     @{await Html.RenderPartialAsync("_validationScriptsPartial");}
 }
+

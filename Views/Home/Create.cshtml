@@ -3,9 +3,10 @@
     ViewData["Title"] = "Opret";
 }
 <h2>Opret</h2>
+@{ DateTime date = DateTime.Now; }
 <form asp-action="Confirmation">
     <div method="post" asp-validation-summary="ModelOnly"></div>
-    
+
     <div>
         <div class="row">
             <div class="col-md-2 label">
@@ -44,7 +45,7 @@
                 <label>Afdeling:</label>
             </div>
             <div class="col-md-2">
-                <select class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count].Department">
+                <select class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].Department">
                     <option>Vælg afd</option>
                     <option>IT</option>
                     <option>EL</option>
@@ -56,25 +57,25 @@
                 <label>Medarbejder:</label>
             </div>
             <div class="col-md-2">
-                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count].EmplyeeName" />
+                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].EmplyeeName" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-2 label">
-                <label>Start Dato:</label>
+                <label>Dato:</label>
             </div>
             <div class="col-md-2">
-                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count].LogDate" type="date" />
+                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].LogDate =@date" readonly type="date" />
             </div>
         </div>
-        <div class="row">
-            @*<div class="col-md-2 label">
+        <!--<div class="row">-->
+        @*<div class="col-md-2 label">
                 <label>Slut Dato:</label>
             </div>
             <div class="col-md-2">
                 <input class="colWidth100" asp-for="DateEnd" type="date" />
             </div>*@
-        </div>
+        <!--</div>-->
 
         <div class="row">
             <div class="col-md-2 label">
@@ -94,7 +95,7 @@
                 <label>Beskrivelse:</label>
             </div>
             <div class="col-md-2">
-                <textarea asp-for="DataLogs[Model.DataLogs.Count].Description" rows="5" cols="40"></textarea>
+                <textarea asp-for="DataLogs[Model.DataLogs.Count-1].Description" rows="5" cols="40"></textarea>
             </div>
         </div>
 

@@ -99,15 +99,19 @@ namespace RedCrossItCheckingSystem.DAL
             cmd.Parameters.Add("@caseID", System.Data.SqlDbType.Int).Value = caseID;
 
             DataContainer container = new DataContainer();
-
+            List<DataLog> logs = new List<DataLog>();
             try
             {
                 SqlDataReader reader = cmd.ExecuteReader();
 
-
+                int counter = 0;
                 //read the data and count for every row
                 while (reader.Read())
                 {
+
+                    DataLog log = new DataLog();
+
+
                     container.SerialNumber = (string)reader["serialNumber"];
                     container.CaseID = (int)reader["caseID"];
                     container.Accessories = (string)reader["accessories"];
@@ -116,26 +120,21 @@ namespace RedCrossItCheckingSystem.DAL
                     container.Status = (string)reader["status"];
 
                     container.IsValid = true;
+                    log.Description = (string)reader["description"];
+                    log.Department = (string)reader["department"];
+                    log.EmplyeeName = (string)reader["employeeName"];
+                    log.LogDate = reader.GetDateTime(reader.GetOrdinal("logdate"));
+                    
+                    container.DataLogs.Add(log);
+                    counter++;
+                  //  Debug.WriteLine(date);
                 }
 
-                if (reader.NextResult())
+                for (int i = 0; i < container.DataLogs.Count; i++)
                 {
-                    while (reader.Read())
-                    {
-                        DataLog log = new DataLog()
-                        {
-                            Description = (string)reader["description"],
-                            Department = (string)reader["department"],
-                            EmplyeeName = (string)reader["employeeName"],
-                            LogDate = reader.GetDateTime(reader.GetOrdinal("dateStart"))
-                        };
-
-                        container.DataLogs.Add(log);
-
-
-                    }
+                 //  container.DataLogs[i].Department
                 }
-
+                //   counter = 0;
             }
             catch (Exception)
             {
@@ -155,18 +154,19 @@ namespace RedCrossItCheckingSystem.DAL
             con.Open();
             SqlCommand cmd = new SqlCommand("SetData", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            int lastLog = container.DataLogs.Count - 1;
+            
 
             cmd.Parameters.Add("@caseID", System.Data.SqlDbType.VarChar).Value = container.CaseID;
             cmd.Parameters.Add("@SerialNumber", System.Data.SqlDbType.VarChar).Value = container.SerialNumber;
-            cmd.Parameters.Add("@department", System.Data.SqlDbType.VarChar).Value = container.Department;
-            cmd.Parameters.Add("@dateStart", System.Data.SqlDbType.Date).Value = container.DateStart;
-            cmd.Parameters.Add("@dateEnd", System.Data.SqlDbType.Date).Value = container.DateEnd;
+            cmd.Parameters.Add("@department", System.Data.SqlDbType.VarChar).Value = container.DataLogs[lastLog].Department;
+            cmd.Parameters.Add("@logDate", System.Data.SqlDbType.Date).Value = DateTime.Now;
             cmd.Parameters.Add("@status", System.Data.SqlDbType.VarChar).Value = container.Status;
             cmd.Parameters.Add("@deviceName", System.Data.SqlDbType.VarChar).Value = container.DeviceName;
             cmd.Parameters.Add("@deviceType", System.Data.SqlDbType.VarChar).Value = container.DeviceType;
             cmd.Parameters.Add("@accessories", System.Data.SqlDbType.VarChar).Value = container.Accessories;
-            cmd.Parameters.Add("@employeeName", System.Data.SqlDbType.VarChar).Value = container.EmplyeeName;
-            cmd.Parameters.Add("@description", System.Data.SqlDbType.VarChar).Value = container.Description;
+            cmd.Parameters.Add("@employeeName", System.Data.SqlDbType.VarChar).Value = container.DataLogs[lastLog].EmplyeeName;
+            cmd.Parameters.Add("@description", System.Data.SqlDbType.VarChar).Value = container.DataLogs[lastLog].Description;
 
             cmd.ExecuteNonQuery();
         }
@@ -178,15 +178,15 @@ namespace RedCrossItCheckingSystem.DAL
             SqlCommand cmd = new SqlCommand("CreateData", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.Add("@SerialNumber", System.Data.SqlDbType.VarChar).Value = container.SerialNumber;
-            cmd.Parameters.Add("@department", System.Data.SqlDbType.VarChar).Value = container.Department;
-            cmd.Parameters.Add("@dateStart", System.Data.SqlDbType.Date).Value = container.DateStart;
-            cmd.Parameters.Add("@dateEnd", System.Data.SqlDbType.Date).Value = container.DateEnd;
+            cmd.Parameters.Add("@department", System.Data.SqlDbType.VarChar).Value = container.DataLogs[0].Department;
+            cmd.Parameters.Add("@logDate", System.Data.SqlDbType.Date).Value = container.DataLogs[0].LogDate;
+            //cmd.Parameters.Add("@dateEnd", System.Data.SqlDbType.Date).Value = container.DataLogs[0].DateEnd;
             cmd.Parameters.Add("@status", System.Data.SqlDbType.VarChar).Value = container.Status;
             cmd.Parameters.Add("@deviceName", System.Data.SqlDbType.VarChar).Value = container.DeviceName;
             cmd.Parameters.Add("@deviceType", System.Data.SqlDbType.VarChar).Value = container.DeviceType;
             cmd.Parameters.Add("@accessories", System.Data.SqlDbType.VarChar).Value = container.Accessories;
-            cmd.Parameters.Add("@employeeName", System.Data.SqlDbType.VarChar).Value = container.EmplyeeName;
-            cmd.Parameters.Add("@description", System.Data.SqlDbType.VarChar).Value = container.Description;
+            cmd.Parameters.Add("@employeeName", System.Data.SqlDbType.VarChar).Value = container.DataLogs[0].EmplyeeName;
+            cmd.Parameters.Add("@description", System.Data.SqlDbType.VarChar).Value = container.DataLogs[0].Description;
 
             cmd.ExecuteNonQuery();
         }
@@ -238,40 +238,24 @@ namespace RedCrossItCheckingSystem.DAL
             {
                 SqlDataReader reader = cmd.ExecuteReader();
                 int counter = 0;
-                DataContainer output = new DataContainer();
 
                 //read the data and count for every row
                 while (reader.Read())
                 {
 
+                    DataContainer output = new DataContainer();
                     output.SerialNumber = (string)reader["serialNumber"];
                     output.CaseID = (int)reader["caseID"];
                     output.Accessories = (string)reader["accessories"];
                     output.DeviceName = (string)reader["deviceName"];
                     output.DeviceType = (string)reader["deviceType"];
                     output.Status = (string)reader["status"];
+                    output.LogCount = (int)reader["counter"];
+
+
+
 
                     counter++;
-                   
-                    //get all logs
-                    if (reader.NextResult())
-                    {
-                        while (reader.Read())
-                        {
-                            DataLog log = new DataLog()
-                            {
-                                Description = (string)reader["description"],
-                                Department = (string)reader["department"],
-                                EmplyeeName = (string)reader["employeeName"],
-                                LogDate = reader.GetDateTime(reader.GetOrdinal("dateStart"))
-                            };
-
-                            output.DataLogs.Add(log);
-
-
-                        }
-                    }
-
                     // check if reader has rows
                     if (counter > 0)
                     {
@@ -280,7 +264,7 @@ namespace RedCrossItCheckingSystem.DAL
                     }
                 }
 
-               
+
                 // Debug.Write(containers.Count);
 
             }

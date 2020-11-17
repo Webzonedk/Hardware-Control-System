@@ -31,7 +31,7 @@
                 <label>Model:</label>
             </div>
             <div class="col-md-2">
-                <input class="colWidth100" asp-for="DeviceName" readonly/>
+                <input class="colWidth100" asp-for="DeviceName" readonly />
             </div>
         </div>
         <div class="row">
@@ -39,7 +39,7 @@
                 <label>Tilbehør:</label>
             </div>
             <div class="col-md-2">
-                <input class="colWidth100" asp-for="Accessories" readonly/>
+                <input class="colWidth100" asp-for="Accessories" readonly />
             </div>
         </div>
         <div class="row">
@@ -47,7 +47,7 @@
                 <label>Afdeling:</label>
             </div>
             <div class="col-md-2">
-                <input class="colWidth100" asp-for="Department" readonly/>
+                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].Department" readonly />
             </div>
         </div>
         <div class="row">
@@ -55,7 +55,7 @@
                 <label>Medarbejder:</label>
             </div>
             <div class="col-md-2">
-                <input class="colWidth100" asp-for="EmplyeeName" readonly/>
+                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].EmplyeeName" readonly />
             </div>
         </div>
         <div class="row">
@@ -63,15 +63,8 @@
                 <label>Start Dato:</label>
             </div>
             <div class="col-md-2">
-                <input class="colWidth100" asp-for="DateStart" type="date" readonly/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Slut Dato:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DateEnd" type="date" readonly/>
+                @{ DateTime date = DateTime.Now; }
+                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].LogDate =@date" type="date" readonly />
             </div>
         </div>
 
@@ -80,7 +73,7 @@
                 <label>Status:</label>
             </div>
             <div class="col-md-2">
-                <input class="colWidth100" asp-for="Status" readonly/>
+                <input class="colWidth100" asp-for="Status" readonly />
             </div>
         </div>
         <div class="row">
@@ -88,20 +81,26 @@
                 <label>Beskrivelse:</label>
             </div>
             <div class="col-md-2">
-                <textarea asp-for="Description" rows="5" cols="40" readonly></textarea >
+                <textarea asp-for="DataLogs[Model.DataLogs.Count-1].Description" rows="5" cols="40" readonly></textarea>
             </div>
         </div>
 
+        <br />
+        <div>
+            <button class="btn btn-primary" type="submit" name="submit" value="@Model.CaseID">Rediger</button>
 
-        <button class="btn btn-primary" type="submit" name="submit" value="@Model.CaseID">Rediger</button>
+        </div>
+        <div>
+
+            <button class="btn btn-primary" onclick="location.href='../Home/Search'" type="button">Fortsæt</button>
+
+        </div>
 
     </div>
 
 </form>
 
-<form action="Index">
-    <input class="btn btn-primary" type="submit" value="Fortsæt" />
-</form>
+
 
 @section scripts {
     @{await Html.RenderPartialAsync("_validationScriptsPartial");}

@@ -19,6 +19,7 @@ namespace RedCrossItCheckingSystem.Models
         private int caseID;
         private bool isValid;
         private List<DataLog> dataLogs;
+        private int logCount;
 
         public string SerialNumber { get => serialNumber; set => serialNumber = value; }
         public string Status { get => status; set => status = value; }
@@ -29,6 +30,7 @@ namespace RedCrossItCheckingSystem.Models
         
         public bool IsValid { get => isValid; set => isValid = value; }
         public List<DataLog> DataLogs { get => dataLogs; set => dataLogs = value; }
+        public int LogCount { get => logCount; set => logCount = value; }
 
         public DataContainer ()
         {
