@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace RedCrossItCheckingSystem.Models
 {
@@ -21,11 +22,21 @@ namespace RedCrossItCheckingSystem.Models
         private List<DataLog> dataLogs;
         private int logCount;
 
+        [Required(ErrorMessage = "Udfyld venligst Serialnumber")]
         public string SerialNumber { get => serialNumber; set => serialNumber = value; }
+
+        [Required(ErrorMessage = "Udfyld venligst status")]
         public string Status { get => status; set => status = value; }
+
+        [Required(ErrorMessage = "Udfyld venligst model")]
         public string DeviceName { get => deviceName; set => deviceName = value; }
+
+        [Required(ErrorMessage = "Udfyld venligst kategori")]
         public string DeviceType { get => deviceType; set => deviceType = value; }
+
+        [Required(ErrorMessage = "Udfyld venligst tilbehør")]
         public string Accessories { get => accessories; set => accessories = value; }
+
         public int CaseID { get => caseID; set => caseID = value; }
         
         public bool IsValid { get => isValid; set => isValid = value; }

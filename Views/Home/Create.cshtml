@@ -13,7 +13,8 @@
                 <label>Serienummer:</label>
             </div>
             <div class="col-md-2">
-                <input class="colWidth100" asp-for="SerialNumber" />
+                <input class="colWidth100 form-control" asp-for="SerialNumber" />
+                <span asp-validation-for="SerialNumber" class="text-danger"></span>
             </div>
         </div>
         <div class="row">
