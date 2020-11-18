@@ -5,125 +5,131 @@
 
 <div class="container shadow">
 
-    
-
- 
 
 
 
-        @if (Model.Count > 0)
+
+
+
+    @if (Model.Count > 0)
+    {
+
+        <div class="row">
+
+            <div class="col-md-auto ">
+                <h2>Søgning udført:</h2>
+
+            </div>
+            <div class="col">
+                <h4 class="buttonInColumn"> Vi fandt @Model.Count sager i systemet</h4>
+            </div>
+
+        </div>
+        <div class="row overViewHeader">
+
+            <span class="col75 ">
+                <label>Sagsnr.</label>
+            </span>
+            <span class="col150">
+                <label>Serienr.</label>
+            </span>
+            <span class="col125">
+                <label>Kategori</label>
+            </span>
+            <span class="col125 ">
+                <label>Model</label>
+            </span>
+            <span class="col175 ">
+                <label>Tilbehør</label>
+            </span>
+            <span class="col75 ">
+                <label>Status</label>
+            </span>
+
+
+        </div>
+
+
+        var rowcol = "";
+
+        for (int i = 0; i < Model.Count; i++)
         {
-
-            <div class="row">
-
-                <div class="col-md-auto ">
-                    <h2>Søgning udført:</h2>
-
-                </div>
-                <div class="col">
-                    <h4 class="buttonInColumn"> Vi fandt @Model.Count sager i systemet</h4>
-                </div>
-
-            </div>
-            <div class="row overViewHeader">
-
-                <span class="col75 ">
-                    <label>Sagsnr.</label>
-                </span>
-                <span class="col150">
-                    <label>Serienr.</label>
-                </span>
-                <span class="col125">
-                    <label>Kategori</label>
-                </span>
-                <span class="col125 ">
-                    <label>Model</label>
-                </span>
-                <span class="col175 ">
-                    <label>Tilbehør</label>
-                </span>
-                <span class="col75 ">
-                    <label>Status</label>
-                </span>
-               
-
-            </div>
-
-
-            var rowcol = "";
-
-            for (int i = 0; i < Model.Count; i++)
+            if (i % 2 == 0)
             {
-                if (i % 2 == 0)
-                {
-                    rowcol = " #dadeff";
-                }
-                else
-                {
-                    rowcol = "#eeefff";
-                }
-
-
-                <div class="row rowPadding" style="background-color:@rowcol;">
-
-
-                    <span class="col75">
-                        @Model[i].CaseID
-                    </span>
-
-                    <span class="col150">
-                        @Model[i].SerialNumber
-                    </span>
-                    <span class="col125">
-                        @Model[i].DeviceType
-                    </span>
-                    <span class="col125">
-                        @Model[i].DeviceName
-                    </span>
-                    <span class="col175 ">
-                        @Model[i].Accessories
-                    </span>
-                    <span class="col75">
-                        @Model[i].Status
-                    </span>
-                   
-                    <form asp-action="Edit" class="col100">
-
-                        <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">rediger</button>
-
-                    </form>
-
-
-                </div>
-
-
+                rowcol = " #dadeff";
+            }
+            else
+            {
+                rowcol = "#eeefff";
             }
 
 
-            <div class="row overViewFooter"></div>
+            <div class="row rowPadding" style="background-color:@rowcol;">
 
-        }
-        else
-        {
-            <div class="row">
-                <h4>intet fundet</h4>
 
-                <form asp-action="Create">
-                    <input class="btn btn-primary" type="submit" value="Opret ny sag" />
+                <span class="col75">
+                    @Model[i].CaseID
+                </span>
+
+                <span class="col150">
+                    @Model[i].SerialNumber
+                </span>
+                <span class="col125">
+                    @Model[i].DeviceType
+                </span>
+                <span class="col125">
+                    @Model[i].DeviceName
+                </span>
+                <span class="col175 ">
+                    @Model[i].Accessories
+                </span>
+                <span class="col75">
+                    @Model[i].Status
+                </span>
+
+                <form asp-action="Edit" class="col100">
+
+                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">rediger</button>
+
                 </form>
 
+
             </div>
+
+
         }
 
 
+        <div class="row overViewFooter"></div>
+
+    }
+    else
+    {
+        <div class="row rowPadding">
+
+            <div class="col-md-auto ">
+                <h2>Søgning udført:</h2>
+            </div>
+
+            <div class="col">
+                <h4 class="buttonInColumn"> Vi fandt @Model.Count sager i systemet</h4>
+            </div>
+
+            <div class="col">
+                <form asp-action="Create">
+                    <input class="btn btn-primary buttonInColumnCenter" type="submit" value="Opret ny sag" />
+                </form>
+            </div>
+
+            @*<div class="row overViewFooter"></div>*@
+
+        </div>
+    }
 
 
-</div>
 
 
 
-
-
-@section scripts {
-    @{await Html.RenderPartialAsync("_validationScriptsPartial");}
-}
+    @section scripts {
+        @{await Html.RenderPartialAsync("_validationScriptsPartial");}
+    }
