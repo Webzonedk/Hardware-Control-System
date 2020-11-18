@@ -5,33 +5,42 @@
     ViewData["Title"] = "Log in";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post" asp-action="CheckUser">
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="@Model.UserName"></label>
-                    <input asp-for="@Model.UserName" class="form-control" />
-                    <span asp-validation-for="@Model.UserName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="@Model.Password"></label>
-                    <input asp-for="@Model.Password" type="password" class="form-control" />
-                    <span asp-validation-for="@Model.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log ind</button>
-                </div>
+<div class="container ">
 
-            </form>
-        </section>
+
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4 shadow">
+            <h1>@ViewData["Title"]</h1>
+            <section>
+                <form id="account" method="post" asp-action="CheckUser">
+                    <hr />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label>Brugernavn</label>
+                        <input asp-for="@Model.UserName" class="form-control" />
+                        <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Password"></label>
+                        <input asp-for="@Model.Password" type="password" class="form-control" />
+                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Log ind</button>
+                    </div>
+
+                </form>
+            </section>
+        </div>
+        <div class="col-md-4">
+
+        </div>
     </div>
 
 </div>
-
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
