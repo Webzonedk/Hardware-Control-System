@@ -7,98 +7,146 @@
     <h2>Vi har registreret følgende</h2>
 </div>
 
-<form asp-action="Edit">
+
     <div method="post" asp-validation-summary="ModelOnly"></div>
-    <div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Serienummer:</label>
+
+
+    <div class="row">
+
+        <div class="col-md-5 ">
+
+            <div class="col-md-12 inputFieldLeft">
+                <div class="sidePadding">
+                    <h3>Rediger sag</h3>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Sagsnummer:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input class="colWidth100" asp-for="CaseID" readonly />
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Serienummer:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="serialId" class="colWidth100" asp-for="SerialNumber" placeholder="Serienummer" readonly  />
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Kategori:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="typeId" class="colWidth100" asp-for="DeviceType" placeholder="Kategori" readonly />
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Model:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="deviceId" class="colWidth100" asp-for="DeviceName" placeholder="Model" readonly />
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Tilbehør:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="accesoriesId" class="colWidth100" asp-for="Accessories" placeholder="Tilbehør" readonly />
+                        </div>
+                      
+                    </div>
+                </div>
+
             </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="SerialNumber" readonly />
-            </div>
+
         </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Kategori:</label>
+
+
+
+
+        @*<div class="col-md-2">
+            <div class="buttomCenter">
+                <input class="btn btn-primary" type="submit" name="submit" value="Fortsæt" />
             </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DeviceType" readonly />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Model:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DeviceName" readonly />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Tilbehør:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="Accessories" readonly />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Afdeling:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].Department" readonly />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Medarbejder:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].EmplyeeName" readonly />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Start Dato:</label>
-            </div>
-            <div class="col-md-2">
-                @{ DateTime date = DateTime.Now; }
-                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].LogDate =@date" type="date" readonly />
+        </div>*@
+       
+        <div class="col-md-2">
+            <div class="buttomCenter">
+                <button class="btn btn-primary" onclick="location.href='../Home/Search'" type="button">Fortsæt</button>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Status:</label>
+
+
+
+
+        <div class="col-md-5 ">
+
+            <div class="col-md-12 inputFieldRight">
+                <h4>Tilføj ny hændelse</h4>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label>Afdeling:</label>
+                    </div>
+                    <div class="col-md-6 ">
+                        <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count - 1].Department" />
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label>Medarbejder:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count - 1].EmplyeeName" placeholder="Medarbejder" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label> Dato:</label>
+                    </div>
+                    <div class="col-md-6">
+                        @{ DateTime date = DateTime.Now;}
+                        <input class="colWidth100 form-control-plaintext readonlyclass" asp-for="DataLogs[Model.DataLogs.Count-1].LogDate =@date" readonly type="date" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label>Status:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input class="colWidth100" asp-for="Status" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label>Beskrivelse:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <textarea  asp-for="DataLogs[Model.DataLogs.Count - 1].Description" rows="4" cols="30"></textarea>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="Status" readonly />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Beskrivelse:</label>
-            </div>
-            <div class="col-md-2">
-                <textarea asp-for="DataLogs[Model.DataLogs.Count-1].Description" rows="5" cols="40" readonly></textarea>
-            </div>
+
+
         </div>
 
-        <br />
-        <div>
-            <button class="btn btn-primary" type="submit" name="submit" value="@Model.CaseID">Rediger</button>
-
-        </div>
-        <div>
-
-            <button class="btn btn-primary" onclick="location.href='../Home/Search'" type="button">Fortsæt</button>
-
-        </div>
 
     </div>
 
-</form>
+
+
+   
+
+
 
 
 
