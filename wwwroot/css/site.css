@@ -112,6 +112,10 @@ body {
     border-bottom: solid;
 }
 
+.rowPadding{
+    padding: 5px !important;
+}
+
 
 .overViewFooter {
     height: 10px;

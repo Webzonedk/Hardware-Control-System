@@ -5,89 +5,124 @@
 
 <div class="container shadow">
 
-    <div class="row">
-       
-            <div class="col-md-auto ">
-                <h2>Søgning udført</h2>
+    
+
+ 
+
+
+
+        @if (Model.Count > 0)
+        {
+
+            <div class="row">
+
+                <div class="col-md-auto ">
+                    <h2>Søgning udført:</h2>
+
+                </div>
+                <div class="col">
+                    <h4 class="buttonInColumn"> Vi fandt @Model.Count sager i systemet</h4>
+                </div>
 
             </div>
-            <div class="col">
-                <h4 class="buttonInColumn"> (Vi fandt @Model.Count sager i systemet)</h4>
+            <div class="row overViewHeader">
+
+                <span class="col75 ">
+                    <label>Sagsnr.</label>
+                </span>
+                <span class="col150">
+                    <label>Serienr.</label>
+                </span>
+                <span class="col125">
+                    <label>Kategori</label>
+                </span>
+                <span class="col125 ">
+                    <label>Model</label>
+                </span>
+                <span class="col175 ">
+                    <label>Tilbehør</label>
+                </span>
+                <span class="col75 ">
+                    <label>Status</label>
+                </span>
+               
+
             </div>
-       
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
 
 
-            @if (Model.Count > 0)
+            var rowcol = "";
+
+            for (int i = 0; i < Model.Count; i++)
             {
+                if (i % 2 == 0)
+                {
+                    rowcol = " #dadeff";
+                }
+                else
+                {
+                    rowcol = "#eeefff";
+                }
 
 
-                <div class="row">
+                <div class="row rowPadding" style="background-color:@rowcol;">
 
-                    <span class="col-md-2 ">
-                        <label>Serienummer </label>
+
+                    <span class="col75">
+                        @Model[i].CaseID
                     </span>
 
-                    <span class="col-md-2 ">
-                        <label>Model navn </label>
+                    <span class="col150">
+                        @Model[i].SerialNumber
                     </span>
+                    <span class="col125">
+                        @Model[i].DeviceType
+                    </span>
+                    <span class="col125">
+                        @Model[i].DeviceName
+                    </span>
+                    <span class="col175 ">
+                        @Model[i].Accessories
+                    </span>
+                    <span class="col75">
+                        @Model[i].Status
+                    </span>
+                   
+                    <form asp-action="Edit" class="col100">
 
-                    <span class="col-md-2 ">
-                        <label>Hardware type </label>
-                    </span>
-                    <span class="col-md-6 ">
+                        <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">rediger</button>
 
-                    </span>
+                    </form>
+
 
                 </div>
 
 
-                <form asp-action="Edit">
-
-                    @for (int i = 0; i < Model.Count; i++)
-                    {
-
-                        <div method="post" asp-validation-summary="ModelOnly"></div>
-
-                        <div class="row searchResult">
-
-
-                            <span class="col-md-2">
-                                <input asp-for="@Model[i].SerialNumber" readonly />
-                            </span>
-
-                            <span class="col-md-2">
-                                <input asp-for="@Model[i].DeviceName" readonly />
-                            </span>
-
-                            <span class="col-md-2">
-                                <input asp-for="@Model[i].DeviceType" readonly />
-                            </span>
-                            <span class="col-md-6">
-                                <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Rediger</button>
-                            </span>
-
-
-                        </div>
-                    }
-                </form>
-
             }
-            else
-            {
+
+
+            <div class="row overViewFooter"></div>
+
+        }
+        else
+        {
+            <div class="row">
                 <h4>intet fundet</h4>
 
                 <form asp-action="Create">
                     <input class="btn btn-primary" type="submit" value="Opret ny sag" />
                 </form>
 
-            }
-        </div>
-    </div>
+            </div>
+        }
+
+
+
+
 </div>
+
+
+
+
 
 @section scripts {
     @{await Html.RenderPartialAsync("_validationScriptsPartial");}
