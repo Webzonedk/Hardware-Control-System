@@ -4,126 +4,106 @@
 }
 
 
+<div class="container shadow">
 
-@if (Model.Count > 0)
-{
-
-    <div class="row overViewHeader">
-
-        <span class="col75 ">
-            <label>Sagsnr.</label>
-        </span>
-        <span class="col150">
-            <label>Serienr.</label>
-        </span>
-        <span class="col125">
-            <label>Kategori</label>
-        </span>
-        <span class="col125 ">
-            <label>Model</label>
-        </span>
-        <span class="col175 ">
-            <label>Tilbehør</label>
-        </span>
-        @*<span class="col50 ">
-                <label>Afd.</label>
-            </span>*@
-        @*<span class="col125 ">
-                <label>Medarbejder</label>
-            </span>*@
-        @*<span class="col100 ">
-                <label>Start Dato</label>
-            </span>*@
-        @*<span class="col100 ">
-                <label>Slut Dato</label>
-            </span>*@
-        <span class="col75 ">
-            <label>Status</label>
-        </span>
-        <span class="col125 ">
-            <label>Antal Logs</label>
-        </span>
-
-    </div>
-
-
-    var rowcol = "";
-
-    for (int i = 0; i < Model.Count; i++)
+    @if (Model.Count > 0)
     {
-        if (i % 2 == 0)
-        {
-            rowcol = " #dadeff";
-        }
-        else
-        {
-            rowcol = "#eeefff";
-        }
 
 
-        <div class="row overviewBody" style="background-color:@rowcol;">
+        <div class="row overViewHeader">
 
-
-            <span class="col75">
-                @Model[i].CaseID
+            <span class="col75 ">
+                <label>Sagsnr.</label>
             </span>
-
             <span class="col150">
-                @Model[i].SerialNumber
+                <label>Serienr.</label>
             </span>
             <span class="col125">
-                @Model[i].DeviceType
+                <label>Kategori</label>
             </span>
-            <span class="col125">
-                @Model[i].DeviceName
+            <span class="col125 ">
+                <label>Model</label>
             </span>
             <span class="col175 ">
-                @Model[i].Accessories
+                <label>Tilbehør</label>
             </span>
-            @*<span class="col50">
-                    @Model[i].Department
-                </span>*@
-            @*<span class="col125">
-                    @Model[i].EmplyeeName
-                </span>*@
-            @*<span class="col100">
-                    @Model[i].DateStart.ToShortDateString()
-                </span>
-                <span class="col100">
-                    @Model[i].DateEnd.ToShortDateString()
-                </span>*@
-            <span class="col75">
-                @Model[i].Status
+            <span class="col75 ">
+                <label>Status</label>
             </span>
-            <span class="col125">
-                @Model[i].LogCount
+            <span class="col125 ">
+                <label>Antal Logs</label>
             </span>
-            <form asp-action="Edit" class="col100">
-
-                <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">rediger</button>
-
-            </form>
-
 
         </div>
 
 
+        var rowcol = "";
+
+        for (int i = 0; i < Model.Count; i++)
+        {
+            if (i % 2 == 0)
+            {
+                rowcol = " #dadeff";
+            }
+            else
+            {
+                rowcol = "#eeefff";
+            }
+
+
+            <div class="row" style="background-color:@rowcol;">
+
+
+                <span class="col75">
+                    @Model[i].CaseID
+                </span>
+
+                <span class="col150">
+                    @Model[i].SerialNumber
+                </span>
+                <span class="col125">
+                    @Model[i].DeviceType
+                </span>
+                <span class="col125">
+                    @Model[i].DeviceName
+                </span>
+                <span class="col175 ">
+                    @Model[i].Accessories
+                </span>
+                <span class="col75">
+                    @Model[i].Status
+                </span>
+                <span class="col125">
+                    @Model[i].LogCount
+                </span>
+                <form asp-action="Edit" class="col100">
+
+                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">rediger</button>
+
+                </form>
+
+
+            </div>
+
+
+        }
+
+
+        <div class="row overViewFooter"></div>
+
     }
-
-
-    <div class="row overViewFooter"></div>
-}
-else
-{
-    <div class="row overviewBody" style=" background-color: #dadeff">
-        <span>
-            <label>intet fundet i databasen</label>
-        </span>
-    </div>
+    else
+    {
+        <div class="row" style=" background-color: #dadeff">
+            <span>
+                <label>intet fundet i databasen</label>
+            </span>
+        </div>
 
 
 
-}
+    }
+</div>
 
 
 

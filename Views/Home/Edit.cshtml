@@ -6,7 +6,7 @@
 
 
 @{ string date = new string("2020-11-16"); }
-<form asp-action="Confirmation">
+<form asp-action="Confirmation" class="was-validated">
     <div method="post" asp-validation-summary="ModelOnly"></div>
     <div class="row">
         <div class="col-md-5 ">
@@ -19,7 +19,7 @@
                             <label>Sagsnummer:</label>
                         </div>
                         <div class="col-md-5">
-                            <input class="colWidth100" asp-for="CaseID" readonly />
+                            <input class="colWidth100 form-control" asp-for="CaseID" readonly />
                         </div>
                         <div class="col-md-3 label">
                             <label>Aktiver</label>
@@ -30,7 +30,7 @@
                             <label>Serienummer:</label>
                         </div>
                         <div class="col-md-5">
-                            <input id="serialId" class="colWidth100" asp-for="SerialNumber" readonly />
+                            <input id="serialId" class="colWidth100 form-control" asp-for="SerialNumber" placeholder="Serienummer" readonly required />
                         </div>
                         <div class="col-md-3">
                             <label class="switch">
@@ -44,7 +44,7 @@
                             <label>Kategori:</label>
                         </div>
                         <div class="col-md-5">
-                            <input id="typeId" class="colWidth100" asp-for="DeviceType" readonly />
+                            <input id="typeId" class="colWidth100 form-control" asp-for="DeviceType" placeholder="Kategori" readonly required />
                         </div>
                         <div class="col-md-3">
                             <label class="switch">
@@ -58,7 +58,7 @@
                             <label>Model:</label>
                         </div>
                         <div class="col-md-5">
-                            <input id="deviceId" class="colWidth100" asp-for="DeviceName" readonly />
+                            <input id="deviceId" class="colWidth100 form-control" asp-for="DeviceName" placeholder="Model" readonly required />
                         </div>
                         <div class="col-md-3">
                             <label class="switch">
@@ -72,7 +72,7 @@
                             <label>Tilbehør:</label>
                         </div>
                         <div class="col-md-5">
-                            <input id="accesoriesId" class="colWidth100" asp-for="Accessories" readonly />
+                            <input id="accesoriesId" class="colWidth100 form-control" asp-for="Accessories" placeholder="Tilbehør" readonly required />
                         </div>
                         <div class="col-md-3">
                             <label class="switch">
@@ -109,11 +109,11 @@
                     <div class="col-md-4 label">
                         <label>Afdeling:</label>
                     </div>
-                    <div class="col-md-5">
-                        <select class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count - 1].Department">
-                            <option>Vælg afd</option>
-                            <option>IT</option>
-                            <option>EL</option>
+                    <div class="col-md-6 ">
+                        <select class="colWidth100 form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].Department" required>
+                            <option value="">Vælg Afdeling</option>
+                            <option value="IT">IT</option>
+                            <option value="EL">EL</option>
                         </select>
                     </div>
                 </div>
@@ -121,28 +121,28 @@
                     <div class="col-md-4 label">
                         <label>Medarbejder:</label>
                     </div>
-                    <div class="col-md-5">
-                        <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count - 1].EmplyeeName" />
+                    <div class="col-md-6">
+                        <input class="colWidth100 form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].EmplyeeName" placeholder="Medarbejder" required />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4 label">
                         <label> Dato:</label>
                     </div>
-                    <div class="col-md-5">
-                        <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].LogDate =@date" readonly type="date" />
+                    <div class="col-md-6">
+                        <input class="colWidth100 form-control-plaintext readonlyclass" asp-for="DataLogs[Model.DataLogs.Count-1].LogDate =@date" readonly type="date" required />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4 label">
                         <label>Status:</label>
                     </div>
-                    <div class="col-md-5">
-                        <select class="colWidth100" asp-for="Status">
-                            <option>Vælg Status</option>
-                            <option>Igang</option>
-                            <option>Defekt</option>
-                            <option>OK</option>
+                    <div class="col-md-6">
+                        <select class="colWidth100 form-control" asp-for="Status" required>
+                            <option value="">Vælg Status</option>
+                            <option value="Igang">Igang</option>
+                            <option value="Defekt">Defekt</option>
+                            <option value="OK">OK</option>
                         </select>
                     </div>
                 </div>
@@ -150,8 +150,8 @@
                     <div class="col-md-4 label">
                         <label>Beskrivelse:</label>
                     </div>
-                    <div class="col-md-5">
-                        <textarea asp-for="DataLogs[Model.DataLogs.Count - 1].Description" rows="4" cols="30"></textarea>
+                    <div class="col-md-8">
+                        <textarea class="form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].Description" rows="4" cols="30" placeholder="Indtast beskrivelse" required></textarea>
                     </div>
                 </div>
             </div>
@@ -172,9 +172,9 @@
 
 
 
-    </div>-
+    </div>
 
-    
+
 
 
 
@@ -207,7 +207,7 @@
                                     <label>Afdeling:</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="colWidth100" asp-for="DataLogs[i].Department" readonly />
+                                    <input class="colWidth100 form-control" asp-for="DataLogs[i].Department" readonly />
                                 </div>
                             </div>
                             <div class="row">
@@ -215,7 +215,7 @@
                                     <label>Medarbejder:</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="colWidth100" asp-for="DataLogs[i].EmplyeeName" readonly />
+                                    <input class="colWidth100 form-control" asp-for="DataLogs[i].EmplyeeName" readonly />
                                 </div>
                             </div>
                             <div class="row">
@@ -224,7 +224,7 @@
                                 </div>
                                 <div class="col-md-6">
 
-                                    <input class="colWidth100" asp-for="DataLogs[i].LogDate" type="date" readonly />
+                                    <input class="colWidth100 form-control" asp-for="DataLogs[i].LogDate" type="date" readonly />
                                 </div>
                             </div>
                         </div>
@@ -234,7 +234,7 @@
                                     <label>Beskrivelse:</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <textarea asp-for="DataLogs[i].Description" rows="4" cols="40" readonly></textarea>
+                                    <textarea class="form-control" asp-for="DataLogs[i].Description" rows="4" cols="40" readonly></textarea>
                                 </div>
                             </div>
                         </div>

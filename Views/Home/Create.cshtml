@@ -2,107 +2,230 @@
 @{
     ViewData["Title"] = "Opret";
 }
-<h2>Opret</h2>
 @{ DateTime date = DateTime.Now; }
-<form asp-action="Confirmation">
+<form asp-action="Confirmation" class="was-validated">
     <div method="post" asp-validation-summary="ModelOnly"></div>
 
-    <div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Serienummer:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100 form-control" asp-for="SerialNumber" />
-                <span asp-validation-for="SerialNumber" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Kategori:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DeviceType" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Model:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DeviceName" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Tilbehør:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="Accessories" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Afdeling:</label>
-            </div>
-            <div class="col-md-2">
-                <select class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].Department">
-                    <option>Vælg afd</option>
-                    <option>IT</option>
-                    <option>EL</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Medarbejder:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].EmplyeeName" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Dato:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].LogDate =@date" readonly type="date" />
-            </div>
-        </div>
-        <!--<div class="row">-->
-        @*<div class="col-md-2 label">
-                <label>Slut Dato:</label>
-            </div>
-            <div class="col-md-2">
-                <input class="colWidth100" asp-for="DateEnd" type="date" />
-            </div>*@
-        <!--</div>-->
+    <div class="row">
+        <div class="col-md-5 ">
 
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Status:</label>
+            <div class="col-md-12 inputFieldLeft">
+                <div class="sidePadding">
+                    <h3>Opret sag</h3>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Serienummer:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="serialId" class="colWidth100 form-control" asp-for="SerialNumber" placeholder="Serienummer" required />
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Kategori:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="typeId" class="colWidth100 form-control" asp-for="DeviceType" placeholder="Kategori" required />
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Model:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="deviceId" class="colWidth100 form-control" asp-for="DeviceName" placeholder="Model" required />
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 label">
+                            <label>Tilbehør:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="accesoriesId" class="colWidth100 form-control" asp-for="Accessories" placeholder="Tilbehør" required />
+                        </div>
+                       
+                    </div>
+                </div>
+
             </div>
-            <div class="col-md-2">
-                <select class="colWidth100" asp-for="Status">
-                    <option>Vælg Status</option>
-                    <option>Igang</option>
-                    <option>Defekt</option>
-                    <option>OK</option>
-                </select>
-            </div>
+
         </div>
-        <div class="row">
-            <div class="col-md-2 label">
-                <label>Beskrivelse:</label>
-            </div>
-            <div class="col-md-2">
-                <textarea asp-for="DataLogs[Model.DataLogs.Count-1].Description" rows="5" cols="40"></textarea>
+
+
+
+
+        <div class="col-md-2">
+            <div class="buttomCenter">
+                <input class="btn btn-primary " type="submit" value="Gem" />
             </div>
         </div>
 
 
-        <input class="btn btn-primary" type="submit" value="Opret" />
+
+
+
+
+        <div class="col-md-5 ">
+
+            <div class="col-md-12 inputFieldRight">
+                <h4>Tilføj ny hændelse</h4>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label>Afdeling:</label>
+                    </div>
+                    <div class="col-md-6 ">
+                        <select class="colWidth100 form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].Department" required>
+                            <option value="">Vælg Afdeling</option>
+                            <option value="IT">IT</option>
+                            <option value="EL">EL</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label>Medarbejder:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input class="colWidth100 form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].EmplyeeName" placeholder="Medarbejder" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label> Dato:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input class="colWidth100 form-control-plaintext" asp-for="DataLogs[Model.DataLogs.Count-1].LogDate =@date" readonly type="date" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label>Status:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="colWidth100 form-control" asp-for="Status" required>
+                            <option value="">Vælg Status</option>
+                            <option value="Igang">Igang</option>
+                            <option value="Defekt">Defekt</option>
+                            <option value="OK">OK</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 label">
+                        <label>Beskrivelse:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <textarea class="form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].Description" rows="4" cols="30" placeholder="Indtast beskrivelse" required></textarea>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
     </div>
+
+
+
+
+
+
+
+
+
+
+    @*<div>
+            <div class="row">
+                <div class="col-md-2 label">
+                    <label>Serienummer:</label>
+                </div>
+                <div class="col-md-2">
+                    <input class="colWidth100" asp-for="SerialNumber"/>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-2 label">
+                    <label>Kategori:</label>
+                </div>
+                <div class="col-md-2">
+                    <input class="colWidth100" asp-for="DeviceType" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 label">
+                    <label>Model:</label>
+                </div>
+                <div class="col-md-2">
+                    <input class="colWidth100" asp-for="DeviceName" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 label">
+                    <label>Tilbehør:</label>
+                </div>
+                <div class="col-md-2">
+                    <input class="colWidth100" asp-for="Accessories" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 label">
+                    <label>Afdeling:</label>
+                </div>
+                <div class="col-md-2">
+                    <select class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].Department">
+                        <option>Vælg afd</option>
+                        <option>IT</option>
+                        <option>EL</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 label">
+                    <label>Medarbejder:</label>
+                </div>
+                <div class="col-md-2">
+                    <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].EmplyeeName" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 label">
+                    <label>Dato:</label>
+                </div>
+                <div class="col-md-2">
+                    <input class="colWidth100" asp-for="DataLogs[Model.DataLogs.Count-1].LogDate =@date" readonly type="date" />
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-2 label">
+                    <label>Status:</label>
+                </div>
+                <div class="col-md-2">
+                    <select class="colWidth100" asp-for="Status">
+                        <option>Vælg Status</option>
+                        <option>Igang</option>
+                        <option>Defekt</option>
+                        <option>OK</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 label">
+                    <label>Beskrivelse:</label>
+                </div>
+                <div class="col-md-2">
+                    <textarea asp-for="DataLogs[Model.DataLogs.Count-1].Description" rows="5" cols="40"></textarea>
+                </div>
+            </div>
+
+
+            <input class="btn btn-primary" type="submit" value="Opret" />
+        </div>*@
 
 
 

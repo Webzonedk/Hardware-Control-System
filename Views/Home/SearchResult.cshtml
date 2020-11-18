@@ -3,14 +3,26 @@
     ViewData["Title"] = "Søg";
 }
 
-<h2 >Søgning udført</h2>
-
-@if (Model.Count > 0)
-{
-    <h4>vi fandt @Model.Count sager i systemet</h4>
+<div class="container shadow">
 
     <div class="row">
-       
+        <div class="col">
+            <h2>Søgning udført</h2>
+            <h4> (Vi fandt @Model.Count sager i systemet)</h4>
+        </div>
+        <div class="colv" style="width:100%">
+           
+        </div>
+    </div>
+
+
+
+    @if (Model.Count > 0)
+    {
+
+
+        <div class="row">
+
             <span class="col-md-2 ">
                 <label>Serienummer </label>
             </span>
@@ -25,52 +37,52 @@
             <span class="col-md-6 ">
 
             </span>
-       
-    </div>
-    
 
-    <form asp-action="Edit">
-
-        @for (int i = 0; i < Model.Count; i++)
-        {
-
-            <div method="post" asp-validation-summary="ModelOnly"></div>
-
-            <div class="row searchResult">
+        </div>
 
 
-                <span class="col-md-2">
-                    <input asp-for="@Model[i].SerialNumber" readonly/>
-                </span>
+        <form asp-action="Edit">
 
-                <span class="col-md-2">
-                    <input asp-for="@Model[i].DeviceName" readonly/>
-                </span>
+            @for (int i = 0; i < Model.Count; i++)
+            {
 
-                <span class="col-md-2">
-                    <input asp-for="@Model[i].DeviceType" readonly/>
-                </span>
-                <span class="col-md-6">
-                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Rediger</button>
-                </span>
+                <div method="post" asp-validation-summary="ModelOnly"></div>
+
+                <div class="row searchResult">
 
 
-            </div>
-        }
-    </form>
+                    <span class="col-md-2">
+                        <input asp-for="@Model[i].SerialNumber" readonly />
+                    </span>
 
-}
-else
-{
-    <h4>intet fundet</h4>
+                    <span class="col-md-2">
+                        <input asp-for="@Model[i].DeviceName" readonly />
+                    </span>
 
-    <form asp-action="Create">
-        <input class="btn btn-primary" type="submit" value="Opret ny sag" />
-    </form>
+                    <span class="col-md-2">
+                        <input asp-for="@Model[i].DeviceType" readonly />
+                    </span>
+                    <span class="col-md-6">
+                        <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Rediger</button>
+                    </span>
 
-}
 
+                </div>
+            }
+        </form>
 
+    }
+    else
+    {
+        <h4>intet fundet</h4>
+
+        <form asp-action="Create">
+            <input class="btn btn-primary" type="submit" value="Opret ny sag" />
+        </form>
+
+    }
+
+</div>
 
 @section scripts {
     @{await Html.RenderPartialAsync("_validationScriptsPartial");}

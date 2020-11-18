@@ -55,14 +55,6 @@ namespace RedCrossItCheckingSystem.DAL
                     output.DeviceType = (string)reader["deviceType"];
                     output.Status = (string)reader["status"];
 
-
-                    //   output.Department = (string)reader["department"];
-                    // output.Description = (string)reader["description"];
-                    //   output.EmplyeeName = (string)reader["employeeName"];
-                    //  DateTime logDate = reader.GetDateTime(reader.GetOrdinal("logDate"));
-
-                    //  output.DateStart = startdate;
-
                     counter++;
 
 
@@ -124,15 +116,15 @@ namespace RedCrossItCheckingSystem.DAL
                     log.Department = (string)reader["department"];
                     log.EmplyeeName = (string)reader["employeeName"];
                     log.LogDate = reader.GetDateTime(reader.GetOrdinal("logdate"));
-                    
+
                     container.DataLogs.Add(log);
                     counter++;
-                  //  Debug.WriteLine(date);
+                    //  Debug.WriteLine(date);
                 }
 
                 for (int i = 0; i < container.DataLogs.Count; i++)
                 {
-                 //  container.DataLogs[i].Department
+                    //  container.DataLogs[i].Department
                 }
                 //   counter = 0;
             }
@@ -155,7 +147,7 @@ namespace RedCrossItCheckingSystem.DAL
             SqlCommand cmd = new SqlCommand("SetData", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             int lastLog = container.DataLogs.Count - 1;
-            
+
 
             cmd.Parameters.Add("@caseID", System.Data.SqlDbType.VarChar).Value = container.CaseID;
             cmd.Parameters.Add("@SerialNumber", System.Data.SqlDbType.VarChar).Value = container.SerialNumber;
@@ -171,7 +163,7 @@ namespace RedCrossItCheckingSystem.DAL
             cmd.ExecuteNonQuery();
         }
 
-        internal void CreateData(DataContainer container)
+        internal int CreateData(DataContainer container)
         {
             SqlConnection con = new SqlConnection(itemsConnectionString);
             con.Open();
@@ -180,15 +172,21 @@ namespace RedCrossItCheckingSystem.DAL
             cmd.Parameters.Add("@SerialNumber", System.Data.SqlDbType.VarChar).Value = container.SerialNumber;
             cmd.Parameters.Add("@department", System.Data.SqlDbType.VarChar).Value = container.DataLogs[0].Department;
             cmd.Parameters.Add("@logDate", System.Data.SqlDbType.Date).Value = container.DataLogs[0].LogDate;
-            //cmd.Parameters.Add("@dateEnd", System.Data.SqlDbType.Date).Value = container.DataLogs[0].DateEnd;
             cmd.Parameters.Add("@status", System.Data.SqlDbType.VarChar).Value = container.Status;
             cmd.Parameters.Add("@deviceName", System.Data.SqlDbType.VarChar).Value = container.DeviceName;
             cmd.Parameters.Add("@deviceType", System.Data.SqlDbType.VarChar).Value = container.DeviceType;
             cmd.Parameters.Add("@accessories", System.Data.SqlDbType.VarChar).Value = container.Accessories;
             cmd.Parameters.Add("@employeeName", System.Data.SqlDbType.VarChar).Value = container.DataLogs[0].EmplyeeName;
             cmd.Parameters.Add("@description", System.Data.SqlDbType.VarChar).Value = container.DataLogs[0].Description;
+            cmd.Parameters.Add("@caseId", System.Data.SqlDbType.Int).Direction = ParameterDirection.Output;
+             cmd.ExecuteNonQuery();
 
-            cmd.ExecuteNonQuery();
+           
+            int output = int.Parse(cmd.Parameters["@caseId"].Value.ToString());
+
+
+            con.Close();
+            return output;
         }
 
         internal bool UserLogin(UserData user)

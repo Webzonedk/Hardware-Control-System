@@ -95,7 +95,7 @@ namespace RedCrossItCheckingSystem.Controllers
         [HttpPost]
         public IActionResult Confirmation(DataContainer container)
         {
-            Debug.WriteLine(container.DataLogs.Count);
+            //  Debug.WriteLine(container.DataLogs.Count);
             DbManager manager = new DbManager(configuration);
             if (container.CaseID > 0)
             {
@@ -104,7 +104,7 @@ namespace RedCrossItCheckingSystem.Controllers
             }
             else
             {
-                manager.CreateData(container);
+                container.CaseID = manager.CreateData(container);
             }
 
 
@@ -118,7 +118,7 @@ namespace RedCrossItCheckingSystem.Controllers
             DataContainer container = new DataContainer();
             container.SerialNumber = serial;
             container.DataLogs.Add(new DataLog());
-            Debug.Write(container.DataLogs.Count);
+            //  Debug.Write(container.DataLogs.Count);
             return View(container);
         }
 
