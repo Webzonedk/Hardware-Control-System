@@ -7,7 +7,7 @@
 
         <h2>Indtast hardwarens Serienummer</h2>
         <h4>for at se om den allerede er oprettet</h4>
-        <br />
+      
     </div>
 
     <form asp-action="Searchresult" method="post">
@@ -23,8 +23,7 @@
 
                 <div class="row">
                     <div class=" col d-flex justify-content-center">
-                        <label>SerieNummer:&ensp; </label>
-                        <input asp-for="SerialNumber" />
+                        <input asp-for="SerialNumber"  placeholder="Indtast Serienummer"/>
                     </div>
                 </div>
                 <br />
