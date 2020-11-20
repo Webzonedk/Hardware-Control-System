@@ -39,3 +39,7 @@ check4.addEventListener("change", function () {
         document.getElementById("accesoriesId").removeAttribute("readonly");
     }
 })
+
+
+
+

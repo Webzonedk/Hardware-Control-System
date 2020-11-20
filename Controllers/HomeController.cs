@@ -46,6 +46,7 @@ namespace RedCrossItCheckingSystem.Controllers
             }
 
         }
+
         [HttpPost]
         public IActionResult SearchResult(DataContainer container)
         {
@@ -95,7 +96,6 @@ namespace RedCrossItCheckingSystem.Controllers
         [HttpPost]
         public IActionResult Confirmation(DataContainer container)
         {
-            //  Debug.WriteLine(container.DataLogs.Count);
             DbManager manager = new DbManager(configuration);
             if (container.CaseID > 0)
             {
@@ -118,18 +118,51 @@ namespace RedCrossItCheckingSystem.Controllers
             DataContainer container = new DataContainer();
             container.SerialNumber = serial;
             container.DataLogs.Add(new DataLog());
-            //  Debug.Write(container.DataLogs.Count);
             return View(container);
         }
 
-        public IActionResult Overview()
+        public IActionResult Overview(string selector)
         {
+
             IsLoggedIn = Convert.ToBoolean(HttpContext.Session.GetString("loggedIn"));
             if (IsLoggedIn)
             {
                 DbManager manager = new DbManager(configuration);
                 List<DataContainer> containers = manager.GetAllData();
-                return View(containers);
+                List<DataContainer> sortedList = new List<DataContainer>();
+                for (int i = 0; i < containers.Count; i++)
+                {
+                    switch (selector)
+                    {
+                        case "Igang":
+                            if (containers[i].Status == selector)
+                            {
+                                sortedList.Add(containers[i]);
+                                HttpContext.Session.SetString("status", Convert.ToString("1"));
+                            }
+                            break;
+                        case "Defekt":
+                            if (containers[i].Status == selector)
+                            {
+                                sortedList.Add(containers[i]);
+                                HttpContext.Session.SetString("status", Convert.ToString("2"));
+                            }
+                            break;
+                        case "OK":
+                            if (containers[i].Status == selector)
+                            {
+                                sortedList.Add(containers[i]);
+                                HttpContext.Session.SetString("status", Convert.ToString("3"));
+                            }
+                            break;
+                        default:
+                            sortedList.Add(containers[i]);
+                            HttpContext.Session.SetString("status", Convert.ToString("0"));
+                            break;
+                    }
+                }
+                ViewBag.selectdata = sortedList[0].Status;
+                return View(sortedList);
             }
             else
             {

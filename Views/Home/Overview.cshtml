@@ -2,6 +2,10 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpcontextAccessor
+
+@{string status = httpcontextAccessor.HttpContext.Session.GetString("status"); }
 
 
 <div class="container shadow">
@@ -31,7 +35,16 @@
             <span class="col125 ">
                 <label>Antal Logs</label>
             </span>
-
+            <div class="col125 ">
+                <form asp-action="Overview" method="post">
+                    <select id="selector" name="selector">
+                        <option value="Filtrer">Filtrer</option>
+                        <option value="Igang">Igang</option>
+                        <option value="Defekt">Defekt</option>
+                        <option value="OK">OK</option>
+                    </select>
+                </form>
+            </div>
         </div>
 
 
@@ -84,6 +97,9 @@
             </div>
 
 
+
+
+
         }
 
 
@@ -92,6 +108,21 @@
     }
     else
     {
+
+    
+        var x = do docSS.getElementById("selector");
+        var minvariabel = status;
+        alert(minvariabel);
+        if (status != " ") {
+            x.selectedIndex = 1;
+        }
+        else {
+            x.selectedIndex = 0;
+        }
+
+
+    
+
 
         <div class="row overViewHeader">
 
@@ -116,6 +147,17 @@
             <span class="col125 ">
                 <label>Antal Logs</label>
             </span>
+            <div class="col125 ">
+                <form asp-action="Overview" method="post">
+                    <select id="selector" name="selector">
+                        <option value="Filtrer" selected="selected">Filtrer</option>
+                        <option value="Igang">Igang</option>
+                        <option value="Defekt">Defekt</option>
+                        <option value="OK">OK</option>
+                    </select>
+                </form>
+            </div>
+
 
         </div>
 
@@ -129,6 +171,9 @@
 
     }
 </div>
+
+<script src="~/js/statusSelector.js"></script>
+<script src="~/js/setStatus.js"></script>
 
 
 
