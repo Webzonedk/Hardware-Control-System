@@ -171,7 +171,6 @@ namespace RedCrossItCheckingSystem.Controllers
                             break;
                     }
                 }
-                sortedList.Sort();
 
 
                 return View(sortedList);
