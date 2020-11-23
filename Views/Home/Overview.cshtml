@@ -8,6 +8,7 @@
 @{string status = httpcontextAccessor.HttpContext.Session.GetString("status"); }
 
 
+
 <div class="container shadow">
 
     @if (Model.Count > 0)
@@ -46,6 +47,7 @@
                 </form>
             </div>
         </div>
+
 
 
         var rowcol = "";
@@ -108,22 +110,6 @@
     }
     else
     {
-
-    
-        var x = do docSS.getElementById("selector");
-        var minvariabel = status;
-        alert(minvariabel);
-        if (status != " ") {
-            x.selectedIndex = 1;
-        }
-        else {
-            x.selectedIndex = 0;
-        }
-
-
-    
-
-
         <div class="row overViewHeader">
 
             <span class="col75 ">
@@ -170,10 +156,20 @@
         <div class="row overViewFooter"></div>
 
     }
+
+    <script type="text/javascript">
+    function javascriptFunction(status)
+    {
+        var x = document.getElementById("selector");
+        x.selectedIndex = status;
+    }
+        javascriptFunction(@Html.Raw(Json.Serialize(status)));
+    </script>
+
 </div>
 
 <script src="~/js/statusSelector.js"></script>
-<script src="~/js/setStatus.js"></script>
+
 
 
 

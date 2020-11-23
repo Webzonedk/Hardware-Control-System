@@ -130,6 +130,7 @@ namespace RedCrossItCheckingSystem.Controllers
                 DbManager manager = new DbManager(configuration);
                 List<DataContainer> containers = manager.GetAllData();
                 List<DataContainer> sortedList = new List<DataContainer>();
+                Debug.WriteLine(selector);
                 for (int i = 0; i < containers.Count; i++)
                 {
                     switch (selector)
@@ -138,22 +139,22 @@ namespace RedCrossItCheckingSystem.Controllers
                             if (containers[i].Status == selector)
                             {
                                 sortedList.Add(containers[i]);
-                                HttpContext.Session.SetString("status", Convert.ToString("1"));
                             }
+                            HttpContext.Session.SetString("status", Convert.ToString("1"));
                             break;
                         case "Defekt":
                             if (containers[i].Status == selector)
                             {
                                 sortedList.Add(containers[i]);
-                                HttpContext.Session.SetString("status", Convert.ToString("2"));
                             }
+                            HttpContext.Session.SetString("status", Convert.ToString("2"));
                             break;
                         case "OK":
                             if (containers[i].Status == selector)
                             {
                                 sortedList.Add(containers[i]);
-                                HttpContext.Session.SetString("status", Convert.ToString("3"));
                             }
+                            HttpContext.Session.SetString("status", Convert.ToString("3"));
                             break;
                         default:
                             sortedList.Add(containers[i]);
@@ -161,7 +162,8 @@ namespace RedCrossItCheckingSystem.Controllers
                             break;
                     }
                 }
-                ViewBag.selectdata = sortedList[0].Status;
+
+
                 return View(sortedList);
             }
             else
