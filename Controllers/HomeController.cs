@@ -130,7 +130,7 @@ namespace RedCrossItCheckingSystem.Controllers
             return View(container);
         }
 
-        public IActionResult Overview(string selector)
+        public IActionResult Overview(string selector, string caseId)
         {
 
             IsLoggedIn = Convert.ToBoolean(HttpContext.Session.GetString("loggedIn"));
@@ -171,6 +171,7 @@ namespace RedCrossItCheckingSystem.Controllers
                             break;
                     }
                 }
+                sortedList.Sort();
 
 
                 return View(sortedList);
