@@ -153,6 +153,8 @@
                     </div>
                     <div class="col-md-8">
                         <textarea class="form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].Description" rows="4" cols="30" placeholder="Indtast beskrivelse" required maxlength="1000"></textarea>
+                        <span id="remaining"></span>
+                        <span id="limit">(Max 1000 tegn)</span>
                     </div>
                 </div>
                
