@@ -12,8 +12,14 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-    font-weight:bold;
+    font-weight: bold;
+    color: #000000;
 }
+
+    a:hover {
+        font-weight: bold;
+        color: #000000;
+    }
 
 .btn-primary {
     color: #fff;
@@ -96,7 +102,6 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
     overflow-y: scroll;
-   
 }
 
 .label {
@@ -115,7 +120,7 @@ body {
     border-bottom: solid;
 }
 
-.rowPadding{
+.rowPadding {
     padding: 5px !important;
 }
 
@@ -123,6 +128,7 @@ body {
 .overViewFooter {
     height: 10px;
 }
+
 .shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
     border-radius: 10px;
@@ -289,10 +295,10 @@ input:checked + .slider:before {
     border-width: 2px;
     border-radius: 10px;
     border-color: #1c289a;
-   /* margin: 10px;*/
+    /* margin: 10px;*/
     padding: 10px;
     height: 100%;
-    width:100%;
+    width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -301,7 +307,7 @@ input:checked + .slider:before {
     border-width: 2px;
     border-radius: 10px;
     border-color: #1c289a;
-   /* margin: 10px;*/
+    /* margin: 10px;*/
     padding: 10px;
     height: 100%;
     width: 100%;
@@ -309,11 +315,11 @@ input:checked + .slider:before {
 }
 
 .buttomCenter {
-    text-align:center;
+    text-align: center;
     position: absolute;
     bottom: 0;
-    left:0;
-    width:100%;
+    left: 0;
+    width: 100%;
 }
 
 .buttonInColumn {
@@ -328,7 +334,7 @@ input:checked + .slider:before {
     text-align: right;
     position: absolute;
     bottom: 0;
-    right:0;
+    right: 0;
     height: 100%;
 }
 
@@ -340,6 +346,4 @@ input:checked + .slider:before {
 
 .form-control.is-valid, .was-validated .form-control:valid {
     background-image: none !important;
-    
 }
-
