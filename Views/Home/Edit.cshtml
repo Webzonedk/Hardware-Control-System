@@ -123,7 +123,7 @@
                         <label>Medarbejder:</label>
                     </div>
                     <div class="col-md-6">
-                        <input class="colWidth100 form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].EmplyeeName" placeholder="Medarbejder" required maxlength="50"/>
+                        <input class="colWidth100 form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].EmplyeeName" placeholder="Medarbejder" required maxlength="50" />
                     </div>
                 </div>
                 <div class="row">
@@ -153,10 +153,9 @@
                     </div>
                     <div class="col-md-8">
                         <textarea class="form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].Description" rows="4" cols="30" placeholder="Indtast beskrivelse" required maxlength="1000"></textarea>
-                        <span id="remaining"></span>
-                        <span id="limit">(Max 1000 tegn)</span>
                     </div>
                 </div>
+               
             </div>
 
 
