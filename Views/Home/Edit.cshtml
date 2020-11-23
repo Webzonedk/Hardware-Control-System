@@ -153,6 +153,8 @@
                     </div>
                     <div class="col-md-8">
                         <textarea class="form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].Description" rows="4" cols="30" placeholder="Indtast beskrivelse" required maxlength="1000"></textarea>
+                        <span id="remaining"></span>
+                        <span id="limit">(Max 1000 tegn)</span>
                     </div>
                 </div>
             </div>
@@ -223,6 +225,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <textarea class="form-control" asp-for="DataLogs[i].Description" rows="4" cols="40" readonly></textarea>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -241,7 +244,7 @@
 </form>
 
 <script src="~/js/JavaScript.js"></script>
-
+<script src="~/js/textCount.js"></script>
 
 
 @section scripts {
