@@ -161,6 +161,7 @@ namespace RedCrossItCheckingSystem.DAL
             cmd.Parameters.Add("@description", System.Data.SqlDbType.VarChar).Value = container.DataLogs[lastLog].Description;
 
             cmd.ExecuteNonQuery();
+            con.Close();
         }
 
         internal int CreateData(DataContainer container)

@@ -64,39 +64,43 @@
             }
 
 
-            <div class="row rowPadding" style="background-color:@rowcol;">
+<div class="row rowPadding" style="background-color:@rowcol;">
 
 
-                <span class="col75">
-                    @Model[i].CaseID
-                </span>
+    <span class="col75">
+        @Model[i].CaseID
+    </span>
 
-                <span class="col150">
-                    @Model[i].SerialNumber
-                </span>
-                <span class="col125">
-                    @Model[i].DeviceType
-                </span>
-                <span class="col125">
-                    @Model[i].DeviceName
-                </span>
-                <span class="col175 ">
-                    @Model[i].Accessories
-                </span>
-                <span class="col75">
-                    @Model[i].Status
-                </span>
-                <span class="col125">
-                    @Model[i].LogCount
-                </span>
-                <form asp-action="Edit" class="col100">
+    <span class="col150">
+        @Model[i].SerialNumber
+    </span>
+    <span class="col125">
+        @Model[i].DeviceType
+    </span>
+    <span class="col125">
+        @Model[i].DeviceName
+    </span>
+    <span class="col175 ">
+        @Model[i].Accessories
+    </span>
+    <span class="col75">
+        @Model[i].Status
+    </span>
+    <span class="col125">
+        @Model[i].LogCount
+    </span>
+    <form asp-action="Edit" class="col100">
 
-                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">rediger</button>
+        <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Rediger</button>
 
-                </form>
+    </form>
+    <form asp-action="Review" class="col100">
 
+        <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Vis Log</button>
 
-            </div>
+    </form>
+
+</div>
 
 
 

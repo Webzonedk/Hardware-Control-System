@@ -17,7 +17,7 @@
                             <label>Serienummer:</label>
                         </div>
                         <div class="col-md-5">
-                            <input id="serialId" class="colWidth100 form-control" asp-for="SerialNumber" placeholder="Serienummer" required />
+                            <input id="serialId" class="colWidth100 form-control" asp-for="SerialNumber" placeholder="Serienummer" required maxlength="50" />
                         </div>
                        
                     </div>
@@ -26,7 +26,7 @@
                             <label>Kategori:</label>
                         </div>
                         <div class="col-md-5">
-                            <input id="typeId" class="colWidth100 form-control" asp-for="DeviceType" placeholder="Kategori" required />
+                            <input id="typeId" class="colWidth100 form-control" asp-for="DeviceType" placeholder="Kategori" required maxlength="50"/>
                         </div>
                         
                     </div>
@@ -35,7 +35,7 @@
                             <label>Model:</label>
                         </div>
                         <div class="col-md-5">
-                            <input id="deviceId" class="colWidth100 form-control" asp-for="DeviceName" placeholder="Model" required />
+                            <input id="deviceId" class="colWidth100 form-control" asp-for="DeviceName" placeholder="Model" required maxlength="50"/>
                         </div>
                         
                     </div>
@@ -44,7 +44,7 @@
                             <label>Tilbehør:</label>
                         </div>
                         <div class="col-md-5">
-                            <input id="accesoriesId" class="colWidth100 form-control" asp-for="Accessories" placeholder="Tilbehør" required />
+                            <input id="accesoriesId" class="colWidth100 form-control" asp-for="Accessories" placeholder="Tilbehør" required maxlength="50"/>
                         </div>
                        
                     </div>
@@ -89,7 +89,7 @@
                         <label>Medarbejder:</label>
                     </div>
                     <div class="col-md-6">
-                        <input class="colWidth100 form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].EmplyeeName" placeholder="Medarbejder" required />
+                        <input class="colWidth100 form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].EmplyeeName" placeholder="Medarbejder" required maxlength="50"/>
                     </div>
                 </div>
                 <div class="row">
@@ -118,7 +118,7 @@
                         <label>Beskrivelse:</label>
                     </div>
                     <div class="col-md-8">
-                        <textarea class="form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].Description" rows="4" cols="30" placeholder="Indtast beskrivelse" required></textarea>
+                        <textarea class="form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].Description" rows="4" cols="30" placeholder="Indtast beskrivelse" required maxlength="1000"></textarea>
                     </div>
                 </div>
             </div>

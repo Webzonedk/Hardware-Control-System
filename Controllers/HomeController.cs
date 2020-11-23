@@ -107,7 +107,16 @@ namespace RedCrossItCheckingSystem.Controllers
                 container.CaseID = manager.CreateData(container);
             }
 
+            return View(container);
+        }
 
+        [HttpPost]
+        public IActionResult Review(string submit)
+        {
+            int caseID = Convert.ToInt32(submit);
+            DbManager manager = new DbManager(configuration);
+            DataContainer container = manager.GetDataFromCaseID(caseID);
+            
             return View(container);
         }
 
