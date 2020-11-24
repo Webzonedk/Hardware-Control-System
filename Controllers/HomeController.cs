@@ -130,7 +130,7 @@ namespace RedCrossItCheckingSystem.Controllers
             return View(container);
         }
 
-        public IActionResult Overview(string selector, string caseId)
+        public IActionResult Overview(string selector)
         {
 
             IsLoggedIn = Convert.ToBoolean(HttpContext.Session.GetString("loggedIn"));
@@ -139,6 +139,7 @@ namespace RedCrossItCheckingSystem.Controllers
                 DbManager manager = new DbManager(configuration);
                 List<DataContainer> containers = manager.GetAllData();
                 List<DataContainer> sortedList = new List<DataContainer>();
+                OverviewModelcs model = new OverviewModelcs();
                 Debug.WriteLine(selector);
                 for (int i = 0; i < containers.Count; i++)
                 {
@@ -171,9 +172,10 @@ namespace RedCrossItCheckingSystem.Controllers
                             break;
                     }
                 }
+                model.Containers = sortedList;
+                sortedList.Clear();
 
-
-                return View(sortedList);
+                return View(model);
             }
             else
             {
