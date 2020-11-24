@@ -21,6 +21,11 @@ a {
         color: #000000;
     }
 
+    a:active {
+        font-weight: bold;
+        color: #fd0202;
+    }
+
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
