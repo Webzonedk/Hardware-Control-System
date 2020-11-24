@@ -1,4 +1,4 @@
-﻿@model List<RedCrossItCheckingSystem.Models.DataContainer>
+﻿@model RedCrossItCheckingSystem.Models.OverviewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -11,34 +11,34 @@
 
 <div class="container shadow">
 
-    @if (Model.Count > 0)
+    @if (Model.Containers.Count > 0)
     {
         <div class="row overViewHeader">
             <div class="col-md-12">
                 <form class="row" asp-action="Overview" method="post">
                     <div class="col75 ">
-                        <a href="#" id="caseNr" type="submit" name="submit">Sagsnr.</a>
+                        <button class="TitleBtn"  id="caseid" name="selector" type="submit" value="@Model.CaseIDCount +=1">Sagsnr.</button>
                     </div>
                     <div class="col150">
-                        <a href="../Home/Overview" type="submit" name="submit">Serienr.</a>
+                        <a href="../Home/Overview" type="submit" >Serienr.</a>
                     </div>
                     <div class="col125">
-                        <a href="../Home/Overview" type="submit" name="submit">Kategori</a>
+                        <a href="../Home/Overview" type="submit" >Kategori</a>
                     </div>
                     <div class="col125 ">
-                        <a href="../Home/Overview" type="submit" name="submit">Model</a>
+                        <a href="../Home/Overview" type="submit" >Model</a>
                     </div>
                     <div class="col175 ">
-                        <a href="../Home/Overview" type="submit" name="submit">Tilbehør</a>
+                        <a href="../Home/Overview" type="submit" >Tilbehør</a>
                     </div>
                     <div class="col75 ">
-                        <a href="../Home/Overview" type="submit" name="submit">Status</a>
+                        <a href="../Home/Overview" type="submit" >Status</a>
                     </div>
                     <div class="col125 ">
-                        <a href="../Home/Overview" type="submit" name="submit">Antal Logs</a>
+                        <a href="../Home/Overview" type="submit" >Antal Logs</a>
                     </div>
                     <div class="col125 ">
-                        <select id="selector" name="selector">
+                        <select id="selector" name="selector" asp-for="@Model.Filter">
                             <option value="Filtrer">Filtrer</option>
                             <option value="Igang">Igang</option>
                             <option value="Defekt">Defekt</option>
@@ -53,7 +53,7 @@
 
         var rowcol = "";
 
-        for (int i = 0; i < Model.Count; i++)
+        for (int i = 0; i < Model.Containers.Count; i++)
         {
             if (i % 2 == 0)
             {
@@ -69,35 +69,35 @@
 
 
                 <span class="col75">
-                    @Model[i].CaseID
+                    @Model.Containers[i].CaseID
                 </span>
 
                 <span class="col150">
-                    @Model[i].SerialNumber
+                    @Model.Containers[i].SerialNumber
                 </span>
                 <span class="col125">
-                    @Model[i].DeviceType
+                    @Model.Containers[i].DeviceType
                 </span>
                 <span class="col125">
-                    @Model[i].DeviceName
+                    @Model.Containers[i].DeviceName
                 </span>
                 <span class="col175 ">
-                    @Model[i].Accessories
+                    @Model.Containers[i].Accessories
                 </span>
                 <span class="col75">
-                    @Model[i].Status
+                    @Model.Containers[i].Status
                 </span>
                 <span class="col125">
-                    @Model[i].LogCount
+                    @Model.Containers[i].LogCount
                 </span>
                 <form asp-action="Edit" class="col100">
 
-                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Rediger</button>
+                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model.Containers[i].CaseID">Rediger</button>
 
                 </form>
                 <form asp-action="Review" class="col100">
 
-                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Vis Log</button>
+                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model.Containers[i].CaseID">Vis Log</button>
 
                 </form>
 
@@ -139,9 +139,9 @@
                 <label>Antal Logs</label>
             </span>
             <div class="col125 ">
-                <form asp-action="Overview" method="post">
-                    <select id="selector" name="selector">
-                        <option value="Filtrer" selected="selected">Filtrer</option>
+                <form asp-action="Overview" method="post" >
+                    <select id="selector" name="selector" asp-for="@Model.Filter">
+                        <option value="Filtrer">Filtrer</option>
                         <option value="Igang">Igang</option>
                         <option value="Defekt">Defekt</option>
                         <option value="OK">OK</option>
@@ -175,18 +175,7 @@
 
 <script src="~/js/statusSelector.js"></script>
 
-@*<script type="text/javascript">
-        function count() {
 
-            var count1 = 0;
-            var element = document.getElementById("label");
-            count1 += 1;
-            alert(counter);
-            element.textContent = count1;
-            counter = count1;
-        }
-        javascriptFunction(@Html.Raw(Json.Serialize(counter)));
-    </script>*@
 
 
 @section scripts {

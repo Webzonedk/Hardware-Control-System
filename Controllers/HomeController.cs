@@ -130,7 +130,7 @@ namespace RedCrossItCheckingSystem.Controllers
             return View(container);
         }
 
-        public IActionResult Overview(string selector)
+        public IActionResult Overview(OverviewModel inputmodel)
         {
 
             IsLoggedIn = Convert.ToBoolean(HttpContext.Session.GetString("loggedIn"));
@@ -139,28 +139,32 @@ namespace RedCrossItCheckingSystem.Controllers
                 DbManager manager = new DbManager(configuration);
                 List<DataContainer> containers = manager.GetAllData();
                 List<DataContainer> sortedList = new List<DataContainer>();
-                OverviewModelcs model = new OverviewModelcs();
-                Debug.WriteLine(selector);
+                OverviewModel model = new OverviewModel();
+                if(inputmodel !=  null)
+                {
+                    model = inputmodel;
+                }
+                Debug.WriteLine(model.Filter);
                 for (int i = 0; i < containers.Count; i++)
                 {
-                    switch (selector)
+                    switch (model.Filter)
                     {
                         case "Igang":
-                            if (containers[i].Status == selector)
+                            if (containers[i].Status == model.Filter)
                             {
                                 sortedList.Add(containers[i]);
                             }
                             HttpContext.Session.SetString("status", Convert.ToString("1"));
                             break;
                         case "Defekt":
-                            if (containers[i].Status == selector)
+                            if (containers[i].Status == model.Filter)
                             {
                                 sortedList.Add(containers[i]);
                             }
                             HttpContext.Session.SetString("status", Convert.ToString("2"));
                             break;
                         case "OK":
-                            if (containers[i].Status == selector)
+                            if (containers[i].Status == model.Filter)
                             {
                                 sortedList.Add(containers[i]);
                             }
@@ -173,7 +177,7 @@ namespace RedCrossItCheckingSystem.Controllers
                     }
                 }
                 model.Containers = sortedList;
-                sortedList.Clear();
+              //  sortedList.Clear();
 
                 return View(model);
             }

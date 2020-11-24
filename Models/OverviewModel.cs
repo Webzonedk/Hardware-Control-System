@@ -5,14 +5,19 @@ using System.Threading.Tasks;
 
 namespace RedCrossItCheckingSystem.Models
 {
-    public class OverviewModelcs
+    public class OverviewModel
     {
         private List<DataContainer> containers;
-        private Sort.SortOptions caseID;
+        //private Sort.SortOptions caseID;
+        private int caseIDCount;
+        private string filter;
         public List<DataContainer> Containers { get => containers; set => containers = value; }
-        public Sort.SortOptions CaseID { get => caseID; set => caseID = value; }
+        public int CaseIDCount { get => caseIDCount; set => caseIDCount = value; }
+        public string Filter { get => filter; set => filter = value; }
 
-        public OverviewModelcs()
+        //public Sort.SortOptions CaseID { get => caseID; set => caseID = value; }
+
+        public OverviewModel()
         {
             containers = new List<DataContainer>();
         }
