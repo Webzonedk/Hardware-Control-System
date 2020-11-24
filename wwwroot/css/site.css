@@ -26,6 +26,12 @@ a {
         color: #fd0202;
     }
 
+.TitleBtn {
+    border: none;
+    background: none;
+    outline: none;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;

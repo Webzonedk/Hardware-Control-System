@@ -7,46 +7,44 @@
 
 @{string status = httpcontextAccessor.HttpContext.Session.GetString("status"); }
 
-@{int counter = 0; }
+@*@{int counter = 0; }*@
 
 <div class="container shadow">
 
     @if (Model.Count > 0)
     {
         <div class="row overViewHeader">
-            <form asp-action="Overview" method="post">
-                <span class="col75 ">
-                    <a href="#" id="caseNr" type="submit" name="submit">Sagsnr.</a>
-
-                    <label id="label"></label>
-                </span>
-            </form>
-            <span class="col150">
-                <a href="../Home/Overview" type="submit" name="submit">Serienr.</a>
-            </span>
-            <span class="col125">
-                <a href="../Home/Overview" type="submit" name="submit">Kategori</a>
-            </span>
-            <span class="col125 ">
-                <a href="../Home/Overview" type="submit" name="submit">Model</a>
-            </span>
-            <span class="col175 ">
-                <a href="../Home/Overview" type="submit" name="submit">Tilbehør</a>
-            </span>
-            <span class="col75 ">
-                <a href="../Home/Overview" type="submit" name="submit">Status</a>
-            </span>
-            <span class="col125 ">
-                <a href="../Home/Overview" type="submit" name="submit">Antal Logs</a>
-            </span>
-            <div class="col125 ">
-                <form asp-action="Overview" method="post">
-                    <select id="selector" name="selector">
-                        <option value="Filtrer">Filtrer</option>
-                        <option value="Igang">Igang</option>
-                        <option value="Defekt">Defekt</option>
-                        <option value="OK">OK</option>
-                    </select>
+            <div class="col-md-12">
+                <form class="row" asp-action="Overview" method="post">
+                    <div class="col75 ">
+                        <a href="#" id="caseNr" type="submit" name="submit">Sagsnr.</a>
+                    </div>
+                    <div class="col150">
+                        <a href="../Home/Overview" type="submit" name="submit">Serienr.</a>
+                    </div>
+                    <div class="col125">
+                        <a href="../Home/Overview" type="submit" name="submit">Kategori</a>
+                    </div>
+                    <div class="col125 ">
+                        <a href="../Home/Overview" type="submit" name="submit">Model</a>
+                    </div>
+                    <div class="col175 ">
+                        <a href="../Home/Overview" type="submit" name="submit">Tilbehør</a>
+                    </div>
+                    <div class="col75 ">
+                        <a href="../Home/Overview" type="submit" name="submit">Status</a>
+                    </div>
+                    <div class="col125 ">
+                        <a href="../Home/Overview" type="submit" name="submit">Antal Logs</a>
+                    </div>
+                    <div class="col125 ">
+                        <select id="selector" name="selector">
+                            <option value="Filtrer">Filtrer</option>
+                            <option value="Igang">Igang</option>
+                            <option value="Defekt">Defekt</option>
+                            <option value="OK">OK</option>
+                        </select>
+                    </div>
                 </form>
             </div>
         </div>
@@ -177,18 +175,18 @@
 
 <script src="~/js/statusSelector.js"></script>
 
-<script type="text/javascript">
-    function count() {
+@*<script type="text/javascript">
+        function count() {
 
-        var count1 = 0;
-        var element = document.getElementById("label");
-        count1 += 1;
-        alert(counter);
-        element.textContent = count1;
-        counter = count1;
-    }
-    javascriptFunction(@Html.Raw(Json.Serialize(counter)));
-</script>
+            var count1 = 0;
+            var element = document.getElementById("label");
+            count1 += 1;
+            alert(counter);
+            element.textContent = count1;
+            counter = count1;
+        }
+        javascriptFunction(@Html.Raw(Json.Serialize(counter)));
+    </script>*@
 
 
 @section scripts {
