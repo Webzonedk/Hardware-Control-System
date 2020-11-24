@@ -7,17 +7,20 @@
 
 @{string status = httpcontextAccessor.HttpContext.Session.GetString("status"); }
 
-
+@{int counter = 0; }
 
 <div class="container shadow">
 
     @if (Model.Count > 0)
     {
         <div class="row overViewHeader">
+            <form asp-action="Overview" method="post">
+                <span class="col75 ">
+                    <a href="#" id="caseNr" type="submit" name="submit">Sagsnr.</a>
 
-            <span class="col75 ">
-                <a href="../Home/Overview" id="caseNr" type="submit" name="submit">Sagsnr.</a>
-            </span>
+                    <label id="label"></label>
+                </span>
+            </form>
             <span class="col150">
                 <a href="../Home/Overview" type="submit" name="submit">Serienr.</a>
             </span>
@@ -64,43 +67,43 @@
             }
 
 
-<div class="row rowPadding" style="background-color:@rowcol;">
+            <div class="row rowPadding" style="background-color:@rowcol;">
 
 
-    <span class="col75">
-        @Model[i].CaseID
-    </span>
+                <span class="col75">
+                    @Model[i].CaseID
+                </span>
 
-    <span class="col150">
-        @Model[i].SerialNumber
-    </span>
-    <span class="col125">
-        @Model[i].DeviceType
-    </span>
-    <span class="col125">
-        @Model[i].DeviceName
-    </span>
-    <span class="col175 ">
-        @Model[i].Accessories
-    </span>
-    <span class="col75">
-        @Model[i].Status
-    </span>
-    <span class="col125">
-        @Model[i].LogCount
-    </span>
-    <form asp-action="Edit" class="col100">
+                <span class="col150">
+                    @Model[i].SerialNumber
+                </span>
+                <span class="col125">
+                    @Model[i].DeviceType
+                </span>
+                <span class="col125">
+                    @Model[i].DeviceName
+                </span>
+                <span class="col175 ">
+                    @Model[i].Accessories
+                </span>
+                <span class="col75">
+                    @Model[i].Status
+                </span>
+                <span class="col125">
+                    @Model[i].LogCount
+                </span>
+                <form asp-action="Edit" class="col100">
 
-        <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Rediger</button>
+                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Rediger</button>
 
-    </form>
-    <form asp-action="Review" class="col100">
+                </form>
+                <form asp-action="Review" class="col100">
 
-        <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Vis Log</button>
+                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Vis Log</button>
 
-    </form>
+                </form>
 
-</div>
+            </div>
 
 
 
@@ -174,7 +177,18 @@
 
 <script src="~/js/statusSelector.js"></script>
 
+<script type="text/javascript">
+    function count() {
 
+        var count1 = 0;
+        var element = document.getElementById("label");
+        count1 += 1;
+        alert(counter);
+        element.textContent = count1;
+        counter = count1;
+    }
+    javascriptFunction(@Html.Raw(Json.Serialize(counter)));
+</script>
 
 
 @section scripts {
