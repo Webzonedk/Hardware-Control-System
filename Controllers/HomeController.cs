@@ -130,7 +130,7 @@ namespace RedCrossItCheckingSystem.Controllers
             return View(container);
         }
 
-        public IActionResult Overview(OverviewModel inputmodel)
+        public IActionResult Overview(OverviewModel inputmodel, string selector)
         {
 
             IsLoggedIn = Convert.ToBoolean(HttpContext.Session.GetString("loggedIn"));

@@ -13,32 +13,34 @@
 
     @if (Model.Containers.Count > 0)
     {
+        
         <div class="row overViewHeader">
             <div class="col-md-12">
-                <form class="row" asp-action="Overview" method="post">
+                <form class="row" asp-action="Overview" >
+                    
                     <div class="col75 ">
-                        <button class="TitleBtn"  id="caseid" name="selector" type="submit" value="@Model.CaseIDCount +=1">Sagsnr.</button>
+                        <button class="TitleBtn" name="submit" type="submit">Sagsnr.</button>
                     </div>
-                    <div class="col150">
-                        <a href="../Home/Overview" type="submit" >Serienr.</a>
-                    </div>
-                    <div class="col125">
-                        <a href="../Home/Overview" type="submit" >Kategori</a>
-                    </div>
+                    @*<div class="col150">
+            <a href="../Home/Overview" type="submit" >Serienr.</a>
+        </div>
+        <div class="col125">
+            <a href="../Home/Overview" type="submit" >Kategori</a>
+        </div>
+        <div class="col125 ">
+            <a href="../Home/Overview" type="submit" >Model</a>
+        </div>
+        <div class="col175 ">
+            <a href="../Home/Overview" type="submit" >Tilbehør</a>
+        </div>
+        <div class="col75 ">
+            <a href="../Home/Overview" type="submit" >Status</a>
+        </div>
+        <div class="col125 ">
+            <a href="../Home/Overview" type="submit" >Antal Logs</a>
+        </div>*@
                     <div class="col125 ">
-                        <a href="../Home/Overview" type="submit" >Model</a>
-                    </div>
-                    <div class="col175 ">
-                        <a href="../Home/Overview" type="submit" >Tilbehør</a>
-                    </div>
-                    <div class="col75 ">
-                        <a href="../Home/Overview" type="submit" >Status</a>
-                    </div>
-                    <div class="col125 ">
-                        <a href="../Home/Overview" type="submit" >Antal Logs</a>
-                    </div>
-                    <div class="col125 ">
-                        <select id="selector" name="selector" asp-for="@Model.Filter">
+                        <select id="selector" name="selector" asp-for="Filter">
                             <option value="Filtrer">Filtrer</option>
                             <option value="Igang">Igang</option>
                             <option value="Defekt">Defekt</option>
@@ -139,7 +141,7 @@
                 <label>Antal Logs</label>
             </span>
             <div class="col125 ">
-                <form asp-action="Overview" method="post" >
+                <form asp-action="Overview" method="post">
                     <select id="selector" name="selector" asp-for="@Model.Filter">
                         <option value="Filtrer">Filtrer</option>
                         <option value="Igang">Igang</option>
@@ -173,7 +175,7 @@
 
 </div>
 
-<script src="~/js/statusSelector.js"></script>
+@*<script src="~/js/statusSelector.js"></script>*@
 
 
 
