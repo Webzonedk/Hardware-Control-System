@@ -7,7 +7,6 @@
 
 @{string status = httpcontextAccessor.HttpContext.Session.GetString("status"); }
 
-@*@{int counter = 0; }*@
 
 <div class="container shadow">
 
@@ -17,25 +16,25 @@
             <div class="col-md-12">
                 <form class="row" asp-action="Overview" method="post">
                     <div class="col75 ">
-                        <a href="#" id="caseNr" type="submit" name="submit">Sagsnr.</a>
+                        <label>Sagsnr.</label>
                     </div>
                     <div class="col150">
-                        <a href="../Home/Overview" type="submit" name="submit">Serienr.</a>
+                        <label>Serienr.</label>
                     </div>
                     <div class="col125">
-                        <a href="../Home/Overview" type="submit" name="submit">Kategori</a>
+                        <label>Kategori</label>
                     </div>
                     <div class="col125 ">
-                        <a href="../Home/Overview" type="submit" name="submit">Model</a>
+                        <label>Model</label>
                     </div>
                     <div class="col175 ">
-                        <a href="../Home/Overview" type="submit" name="submit">Tilbehør</a>
+                        <label>Tilbehør</label>
                     </div>
                     <div class="col75 ">
-                        <a href="../Home/Overview" type="submit" name="submit">Status</a>
+                        <label>Status</label>
                     </div>
                     <div class="col125 ">
-                        <a href="../Home/Overview" type="submit" name="submit">Antal Logs</a>
+                        <label>Antal Logs</label>
                     </div>
                     <div class="col125 ">
                         <select id="selector" name="selector">
@@ -175,18 +174,6 @@
 
 <script src="~/js/statusSelector.js"></script>
 
-@*<script type="text/javascript">
-        function count() {
-
-            var count1 = 0;
-            var element = document.getElementById("label");
-            count1 += 1;
-            alert(counter);
-            element.textContent = count1;
-            counter = count1;
-        }
-        javascriptFunction(@Html.Raw(Json.Serialize(counter)));
-    </script>*@
 
 
 @section scripts {
