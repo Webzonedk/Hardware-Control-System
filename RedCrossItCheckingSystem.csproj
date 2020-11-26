@@ -4,12 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-RedCrossItCheckingSystem-00B51B1A-69FA-4576-9053-FDDDFFE92C37</UserSecretsId>
     <StartupObject>RedCrossItCheckingSystem.Program</StartupObject>
-    <ApplicationIcon>zbc_redcross_logo_black_4m0_2.ico</ApplicationIcon>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Images\Zbc_RedCross_Logo.png" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.9" />
