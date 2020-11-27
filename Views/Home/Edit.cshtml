@@ -16,24 +16,24 @@
                 <div class="sidePadding">
                     <h3>Rediger sag</h3>
                     <div class="row">
-                        <div class="col-md-4 label rowPadding">
+                        <div class="col-md-4 label">
                             <label>Sagsnummer:</label>
                         </div>
                         <div class="col-md-5 rowPadding">
                             <input class="colWidth100 form-control" asp-for="CaseID" readonly />
                         </div>
-                        <div class="col-md-3 label rowPadding">
+                        <div class="col-md-3 label">
                             <label>Aktiver</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 label rowPadding">
+                        <div class="col-md-4 label">
                             <label>Serienummer:</label>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 rowPadding">
                             <input id="serialId" class="colWidth100 form-control" asp-for="SerialNumber" placeholder="Serienummer" readonly required maxlength="50" />
                         </div>
-                        <div class="col-md-3 rowPadding">
+                        <div class="col-md-3">
                             <label class="switch">
                                 <input id="checkSerial" type="checkbox">
                                 <span class="slider round"></span>
@@ -41,13 +41,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 label rowPadding">
+                        <div class="col-md-4 label">
                             <label>Kategori:</label>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 rowPadding">
                             <input id="typeId" class="colWidth100 form-control" asp-for="DeviceType" placeholder="Kategori" readonly required maxlength="50" />
                         </div>
-                        <div class="col-md-3 rowPadding">
+                        <div class="col-md-3">
                             <label class="switch">
                                 <input id="checkType" type="checkbox">
                                 <span class="slider round"></span>
@@ -55,10 +55,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 label rowPadding">
+                        <div class="col-md-4 label">
                             <label>Model:</label>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 rowPadding">
                             <input id="deviceId" class="colWidth100 form-control" asp-for="DeviceName" placeholder="Model" readonly required maxlength="50" />
                         </div>
                         <div class="col-md-3 rowPadding">
@@ -72,7 +72,7 @@
                         <div class="col-md-4 label rowPadding">
                             <label>Tilbehør:</label>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 rowPadding">
                             <input id="accesoriesId" class="colWidth100 form-control" asp-for="Accessories" placeholder="Tilbehør" readonly required maxlength="50" />
                         </div>
                         <div class="col-md-3 rowPadding">
@@ -199,7 +199,7 @@
                                 <div class="col-md-3 label">
                                     <label>Afdeling:</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 rowPadding">
                                     <input class="colWidth100 form-control" asp-for="DataLogs[i].Department" readonly />
                                 </div>
                             </div>
@@ -207,7 +207,7 @@
                                 <div class="col-md-3 label">
                                     <label>Medarbejder:</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 rowPadding">
                                     <input class="colWidth100 form-control" asp-for="DataLogs[i].EmplyeeName" readonly />
                                 </div>
                             </div>
@@ -215,7 +215,7 @@
                                 <div class="col-md-3 label">
                                     <label>Dato:</label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 rowPadding">
 
                                     <input class="colWidth100 form-control" asp-for="DataLogs[i].LogDate" type="date" readonly />
                                 </div>
@@ -226,7 +226,7 @@
                                 <div class="col-md-3 label">
                                     <label>Beskrivelse:</label>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7 rowPadding">
                                     <textarea class="form-control" asp-for="DataLogs[i].Description" rows="4" cols="40" readonly></textarea>
 
                                 </div>
