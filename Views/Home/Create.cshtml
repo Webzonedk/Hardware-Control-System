@@ -12,37 +12,37 @@
                 <div class="sidePadding">
                     <h3>Opret sag</h3>
                     <div class="row">
-                        <div class="col-md-4 label">
+                        <div class="col-md-4 label rowPadding">
                             <label>Serienummer:</label>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 rowPadding">
                             <input id="serialId" class="colWidth100 form-control" asp-for="SerialNumber" placeholder="Serienummer" required maxlength="50" />
                         </div>
                        
                     </div>
                     <div class="row">
-                        <div class="col-md-4 label">
+                        <div class="col-md-4 label rowPadding">
                             <label>Kategori:</label>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 rowPadding">
                             <input id="typeId" class="colWidth100 form-control" asp-for="DeviceType" placeholder="Kategori" required maxlength="50"/>
                         </div>
                         
                     </div>
                     <div class="row">
-                        <div class="col-md-4 label">
+                        <div class="col-md-4 label rowPadding">
                             <label>Model:</label>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 rowPadding">
                             <input id="deviceId" class="colWidth100 form-control" asp-for="DeviceName" placeholder="Model" required maxlength="50"/>
                         </div>
                         
                     </div>
                     <div class="row">
-                        <div class="col-md-4 label">
+                        <div class="col-md-4 label rowPadding">
                             <label>Tilbehør:</label>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 rowPadding">
                             <input id="accesoriesId" class="colWidth100 form-control" asp-for="Accessories" placeholder="Tilbehør" required maxlength="50"/>
                         </div>
                        
@@ -75,7 +75,7 @@
                     <div class="col-md-4 label">
                         <label>Afdeling:</label>
                     </div>
-                    <div class="col-md-6 ">
+                    <div class="col-md-6 rowPadding">
                         <select class="colWidth100 form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].Department" required>
                             <option value="">Vælg Afdeling</option>
                             <option value="IT">IT</option>
@@ -87,7 +87,7 @@
                     <div class="col-md-4 label">
                         <label>Medarbejder:</label>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 rowPadding">
                         <input class="colWidth100 form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].EmplyeeName" placeholder="Medarbejder" required maxlength="50"/>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                     <div class="col-md-4 label">
                         <label> Dato:</label>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 rowPadding">
                         <input class="colWidth100 form-control-plaintext" asp-for="DataLogs[Model.DataLogs.Count-1].LogDate =@date" readonly type="date" required />
                     </div>
                 </div>
@@ -103,12 +103,14 @@
                     <div class="col-md-4 label">
                         <label>Status:</label>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 rowPadding">
                         <select class="colWidth100 form-control" asp-for="Status" required>
                             <option value="">Vælg Status</option>
+                            <option value="Ankommet">Ankommet</option>
                             <option value="Igang">Igang</option>
                             <option value="Defekt">Defekt</option>
                             <option value="OK">OK</option>
+                            <option value="Afsluttet">Afsluttet</option>
                         </select>
                     </div>
                 </div>
@@ -116,7 +118,7 @@
                     <div class="col-md-4 label">
                         <label>Beskrivelse:</label>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7 rowPadding">
                         <textarea class="form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].Description" rows="4" cols="30" placeholder="Indtast beskrivelse" required maxlength="1000"></textarea>
                         <span id="remaining"></span>
                         <span id="limit">(Max 1000 tegn)</span>

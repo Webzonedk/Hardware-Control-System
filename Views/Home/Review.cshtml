@@ -43,46 +43,46 @@
         <div class="col-md-12 inputFieldLeft">
             <div class="sidePadding">
                 <div class="row">
-                    <div class="col-md-4 label">
+                    <div class="col-md-4 label rowPadding">
                         <label>Sagsnummer:</label>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5 rowPadding">
                         <input class="colWidth100" asp-for="CaseID" readonly />
                     </div>
 
                 </div>
                 <div class="row">
-                    <div class="col-md-4 label">
+                    <div class="col-md-4 label rowPadding">
                         <label>Serienummer:</label>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5 rowPadding">
                         <input id="serialId" class="colWidth100" asp-for="SerialNumber" placeholder="Serienummer" readonly />
                     </div>
 
                 </div>
                 <div class="row">
-                    <div class="col-md-4 label">
+                    <div class="col-md-4 label rowPadding">
                         <label>Kategori:</label>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5 rowPadding">
                         <input id="typeId" class="colWidth100" asp-for="DeviceType" placeholder="Kategori" readonly />
                     </div>
 
                 </div>
                 <div class="row">
-                    <div class="col-md-4 label">
+                    <div class="col-md-4 label rowPadding">
                         <label>Model:</label>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5 rowPadding">
                         <input id="deviceId" class="colWidth100" asp-for="DeviceName" placeholder="Model" readonly />
                     </div>
 
                 </div>
                 <div class="row">
-                    <div class="col-md-4 label">
+                    <div class="col-md-4 label rowPadding">
                         <label>Tilbehør:</label>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5 rowPadding">
                         <input id="accesoriesId" class="colWidth100" asp-for="Accessories" placeholder="Tilbehør" readonly />
                     </div>
 
@@ -122,7 +122,7 @@
                             <div class="col-md-3 label">
                                 <label>Afdeling:</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 rowPadding">
                                 <input class="colWidth100 form-control" asp-for="DataLogs[i].Department" readonly />
                             </div>
                         </div>
@@ -130,7 +130,7 @@
                             <div class="col-md-3 label">
                                 <label>Medarbejder:</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 rowPadding">
                                 <input class="colWidth100 form-control" asp-for="DataLogs[i].EmplyeeName" readonly />
                             </div>
                         </div>
@@ -138,7 +138,7 @@
                             <div class="col-md-3 label">
                                 <label>Dato:</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 rowPadding">
 
                                 <input class="colWidth100 form-control" asp-for="DataLogs[i].LogDate" type="date" readonly />
                             </div>
@@ -149,7 +149,7 @@
                             <div class="col-md-3 label">
                                 <label>Beskrivelse:</label>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-7 rowPadding">
                                 <textarea class="form-control" asp-for="DataLogs[i].Description" rows="4" cols="40" readonly></textarea>
                             </div>
                         </div>

@@ -30,18 +30,20 @@
                     <div class="col175 ">
                         <label>Tilbehør</label>
                     </div>
-                    <div class="col75 ">
+                    <div class="col125 ">
                         <label>Status</label>
                     </div>
-                    <div class="col125 ">
-                        <label>Antal Logs</label>
+                    <div class="col75 ">
+                        <label>Logs</label>
                     </div>
                     <div class="col125 ">
                         <select id="selector" name="selector">
                             <option value="Filtrer">Filtrer</option>
+                            <option value="Ankommet">Ankommet</option>
                             <option value="Igang">Igang</option>
                             <option value="Defekt">Defekt</option>
                             <option value="OK">OK</option>
+                            <option value="Afsluttet">Afsluttet</option>
                         </select>
                     </div>
                 </form>
@@ -83,10 +85,10 @@
                 <span class="col175 ">
                     @Model[i].Accessories
                 </span>
-                <span class="col75">
+                <span class="col125">
                     @Model[i].Status
                 </span>
-                <span class="col125">
+                <span class="col75">
                     @Model[i].LogCount
                 </span>
                 <form asp-action="Edit" class="col100">
@@ -131,19 +133,21 @@
             <span class="col175 ">
                 <label>Tilbehør</label>
             </span>
-            <span class="col75 ">
+            <span class="col125 ">
                 <label>Status</label>
             </span>
-            <span class="col125 ">
-                <label>Antal Logs</label>
+            <span class="col75 ">
+                <label>Logs</label>
             </span>
             <div class="col125 ">
                 <form asp-action="Overview" method="post">
                     <select id="selector" name="selector">
-                        <option value="Filtrer" selected="selected">Filtrer</option>
+                        <option value="Filtrer">Filtrer</option>
+                        <option value="Ankommet">Ankommet</option>
                         <option value="Igang">Igang</option>
                         <option value="Defekt">Defekt</option>
                         <option value="OK">OK</option>
+                        <option value="Afsluttet">Afsluttet</option>
                     </select>
                 </form>
             </div>

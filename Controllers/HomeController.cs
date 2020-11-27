@@ -88,7 +88,7 @@ namespace RedCrossItCheckingSystem.Controllers
 
 
             container.DataLogs.Add(new DataLog());
-            Debug.WriteLine(container.DataLogs[container.DataLogs.Count - 1]);
+            
             return View(container);
 
         }
@@ -97,17 +97,22 @@ namespace RedCrossItCheckingSystem.Controllers
         public IActionResult Confirmation(DataContainer container)
         {
             DbManager manager = new DbManager(configuration);
+            DataContainer container2 = new DataContainer();
+            int id = 0;
             if (container.CaseID > 0)
             {
                 manager.SetData(container);
-
+                id = container.CaseID;
+                
             }
             else
             {
-                container.CaseID = manager.CreateData(container);
+                 id = manager.CreateData(container);
             }
 
-            return View(container);
+            container2 = manager.GetDataFromCaseID(id);
+
+            return View(container2);
         }
 
         [HttpPost]
@@ -116,7 +121,7 @@ namespace RedCrossItCheckingSystem.Controllers
             int caseID = Convert.ToInt32(submit);
             DbManager manager = new DbManager(configuration);
             DataContainer container = manager.GetDataFromCaseID(caseID);
-            
+
             return View(container);
         }
 
@@ -144,26 +149,40 @@ namespace RedCrossItCheckingSystem.Controllers
                 {
                     switch (selector)
                     {
-                        case "Igang":
+                        case "Ankommet":
                             if (containers[i].Status == selector)
                             {
                                 sortedList.Add(containers[i]);
                             }
                             HttpContext.Session.SetString("status", Convert.ToString("1"));
                             break;
-                        case "Defekt":
+                        case "Igang":
                             if (containers[i].Status == selector)
                             {
                                 sortedList.Add(containers[i]);
                             }
                             HttpContext.Session.SetString("status", Convert.ToString("2"));
                             break;
-                        case "OK":
+                        case "Defekt":
                             if (containers[i].Status == selector)
                             {
                                 sortedList.Add(containers[i]);
                             }
                             HttpContext.Session.SetString("status", Convert.ToString("3"));
+                            break;
+                        case "OK":
+                            if (containers[i].Status == selector)
+                            {
+                                sortedList.Add(containers[i]);
+                            }
+                            HttpContext.Session.SetString("status", Convert.ToString("4"));
+                            break;
+                        case "Afsluttet":
+                            if (containers[i].Status == selector)
+                            {
+                                sortedList.Add(containers[i]);
+                            }
+                            HttpContext.Session.SetString("status", Convert.ToString("5"));
                             break;
                         default:
                             sortedList.Add(containers[i]);
