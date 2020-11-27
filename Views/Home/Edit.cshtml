@@ -5,11 +5,11 @@
 }
 
 
-@{ string date = new string("2020-11-16"); }
+@{ DateTime date = DateTime.Now; }
 <form asp-action="Confirmation" class="was-validated">
     <div method="post" asp-validation-summary="ModelOnly"></div>
     <div class="row">
-       
+
         <div class="col-md-5 ">
 
             <div class="col-md-12 inputFieldLeft">
@@ -31,7 +31,7 @@
                             <label>Serienummer:</label>
                         </div>
                         <div class="col-md-5">
-                            <input id="serialId" class="colWidth100 form-control" asp-for="SerialNumber" placeholder="Serienummer" readonly required maxlength="50"/>
+                            <input id="serialId" class="colWidth100 form-control" asp-for="SerialNumber" placeholder="Serienummer" readonly required maxlength="50" />
                         </div>
                         <div class="col-md-3">
                             <label class="switch">
@@ -45,7 +45,7 @@
                             <label>Kategori:</label>
                         </div>
                         <div class="col-md-5">
-                            <input id="typeId" class="colWidth100 form-control" asp-for="DeviceType" placeholder="Kategori" readonly required maxlength="50"/>
+                            <input id="typeId" class="colWidth100 form-control" asp-for="DeviceType" placeholder="Kategori" readonly required maxlength="50" />
                         </div>
                         <div class="col-md-3">
                             <label class="switch">
@@ -59,7 +59,7 @@
                             <label>Model:</label>
                         </div>
                         <div class="col-md-5">
-                            <input id="deviceId" class="colWidth100 form-control" asp-for="DeviceName" placeholder="Model" readonly required maxlength="50"/>
+                            <input id="deviceId" class="colWidth100 form-control" asp-for="DeviceName" placeholder="Model" readonly required maxlength="50" />
                         </div>
                         <div class="col-md-3">
                             <label class="switch">
@@ -73,7 +73,7 @@
                             <label>Tilbehør:</label>
                         </div>
                         <div class="col-md-5">
-                            <input id="accesoriesId" class="colWidth100 form-control" asp-for="Accessories" placeholder="Tilbehør" readonly required maxlength="50"/>
+                            <input id="accesoriesId" class="colWidth100 form-control" asp-for="Accessories" placeholder="Tilbehør" readonly required maxlength="50" />
                         </div>
                         <div class="col-md-3">
                             <label class="switch">
@@ -157,7 +157,7 @@
                         <span id="limit">(Max 1000 tegn)</span>
                     </div>
                 </div>
-               
+
             </div>
 
 
@@ -226,7 +226,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <textarea class="form-control" asp-for="DataLogs[i].Description" rows="4" cols="40" readonly></textarea>
-                                    
+
                                 </div>
                             </div>
                         </div>
