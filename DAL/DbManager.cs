@@ -167,7 +167,7 @@ namespace RedCrossItCheckingSystem.DAL
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.Add("@SerialNumber", System.Data.SqlDbType.VarChar).Value = container.SerialNumber;
             cmd.Parameters.Add("@department", System.Data.SqlDbType.VarChar).Value = container.DataLogs[0].Department;
-            cmd.Parameters.Add("@logDate", System.Data.SqlDbType.DateTime).Value = container.DataLogs[0].LogDate;
+            cmd.Parameters.Add("@logDate", System.Data.SqlDbType.DateTime).Value = DateTime.Now;
             cmd.Parameters.Add("@status", System.Data.SqlDbType.VarChar).Value = container.Status;
             cmd.Parameters.Add("@deviceName", System.Data.SqlDbType.VarChar).Value = container.DeviceName;
             cmd.Parameters.Add("@deviceType", System.Data.SqlDbType.VarChar).Value = container.DeviceType;
