@@ -2,7 +2,11 @@
 @{
     ViewData["Title"] = "Opret";
 }
+
+<!--setting date to current date and time-->
 @{ DateTime date = DateTime.Now; }
+
+<!--form to put data into model-->
 <form asp-action="Confirmation" class="was-validated">
     <div method="post" asp-validation-summary="ModelOnly"></div>
     <div class="row">
@@ -18,34 +22,34 @@
                         <div class="col-md-5 rowPadding">
                             <input id="serialId" class="colWidth100 form-control" asp-for="SerialNumber" placeholder="Serienummer" required maxlength="50" />
                         </div>
-                       
+
                     </div>
                     <div class="row">
                         <div class="col-md-4 label rowPadding">
                             <label>Kategori:</label>
                         </div>
                         <div class="col-md-5 rowPadding">
-                            <input id="typeId" class="colWidth100 form-control" asp-for="DeviceType" placeholder="Kategori" required maxlength="50"/>
+                            <input id="typeId" class="colWidth100 form-control" asp-for="DeviceType" placeholder="Kategori" required maxlength="50" />
                         </div>
-                        
+
                     </div>
                     <div class="row">
                         <div class="col-md-4 label rowPadding">
                             <label>Model:</label>
                         </div>
                         <div class="col-md-5 rowPadding">
-                            <input id="deviceId" class="colWidth100 form-control" asp-for="DeviceName" placeholder="Model" required maxlength="50"/>
+                            <input id="deviceId" class="colWidth100 form-control" asp-for="DeviceName" placeholder="Model" required maxlength="50" />
                         </div>
-                        
+
                     </div>
                     <div class="row">
                         <div class="col-md-4 label rowPadding">
                             <label>Tilbehør:</label>
                         </div>
                         <div class="col-md-5 rowPadding">
-                            <input id="accesoriesId" class="colWidth100 form-control" asp-for="Accessories" placeholder="Tilbehør" required maxlength="50"/>
+                            <input id="accesoriesId" class="colWidth100 form-control" asp-for="Accessories" placeholder="Tilbehør" required maxlength="50" />
                         </div>
-                       
+
                     </div>
                 </div>
 
@@ -55,7 +59,7 @@
 
 
 
-
+        <!--button for saving data to database-->
         <div class="col-md-2">
             <div class="buttomCenter">
                 <input class="btn btn-primary " type="submit" value="Gem" />
@@ -66,7 +70,7 @@
 
 
 
-
+        <!--right input field for log data-->
         <div class="col-md-5 ">
 
             <div class="col-md-12 inputFieldRight">
@@ -88,7 +92,7 @@
                         <label>Medarbejder:</label>
                     </div>
                     <div class="col-md-6 rowPadding">
-                        <input class="colWidth100 form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].EmplyeeName" placeholder="Medarbejder" required maxlength="50"/>
+                        <input class="colWidth100 form-control" asp-for="DataLogs[Model.DataLogs.Count - 1].EmplyeeName" placeholder="Medarbejder" required maxlength="50" />
                     </div>
                 </div>
                 <div class="row">
@@ -136,7 +140,7 @@
 
 </form>
 
-
+<!--java script for counting remaining text in description-->
 <script src="~/js/textCount.js"></script>
 
 

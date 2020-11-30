@@ -11,8 +11,8 @@ namespace RedCrossItCheckingSystem.Models
 {
     public class DataContainer
     {
+        //private fields
         private string serialNumber;
-
         private string status;
         private string deviceName;
         private string deviceType;
@@ -22,7 +22,7 @@ namespace RedCrossItCheckingSystem.Models
         private List<DataLog> dataLogs;
         private int logCount;
 
-
+        //public properties
         public string SerialNumber { get => serialNumber; set => serialNumber = value; }
 
 
@@ -43,6 +43,7 @@ namespace RedCrossItCheckingSystem.Models
         public List<DataLog> DataLogs { get => dataLogs; set => dataLogs = value; }
         public int LogCount { get => logCount; set => logCount = value; }
 
+        //constructor initializing list of datalogs
         public DataContainer()
         {
             dataLogs = new List<DataLog>();

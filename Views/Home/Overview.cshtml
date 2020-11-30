@@ -4,12 +4,13 @@
 }
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor httpcontextAccessor
-
+<!--getting the currently selected filter-->
 @{string status = httpcontextAccessor.HttpContext.Session.GetString("status"); }
 
 
 <div class="container shadow">
 
+    <!--showing list of content if list exist-->
     @if (Model.Count > 0)
     {
         <div class="row overViewHeader">
@@ -51,7 +52,7 @@
         </div>
 
 
-
+        <!--showing list content with alternating background colors-->
         var rowcol = "";
 
         for (int i = 0; i < Model.Count; i++)
@@ -91,6 +92,8 @@
                 <span class="col75">
                     @Model[i].LogCount
                 </span>
+
+                <!--buttons to edit or review the logs-->
                 <form asp-action="Edit" class="col100">
 
                     <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Rediger</button>
@@ -116,6 +119,7 @@
     }
     else
     {
+        <!--show user if no data was found-->
         <div class="row overViewHeader">
 
             <span class="col75 ">
@@ -165,6 +169,7 @@
 
     }
 
+    <!--java script to set the filter based on session variable-->
     <script type="text/javascript">
     function javascriptFunction(status)
     {

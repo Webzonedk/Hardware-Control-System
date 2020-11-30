@@ -7,13 +7,14 @@ namespace RedCrossItCheckingSystem.Models
 {
     public class DataLog
     {
+        //private fields
         private int id;
         private string department;
         private string emplyeeName;
         private string description;
         private DateTime logDate;
 
-
+        //public properties
         public string Department { get => department; set => department = value; }
 
 
@@ -36,6 +37,7 @@ namespace RedCrossItCheckingSystem.Models
         }
         public int Id { get => id; set => id = value; }
 
+        //empty constructor
         public DataLog()
         {
 

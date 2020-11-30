@@ -10,7 +10,7 @@
 
 
 
-
+    <!--show content of list model if any exists --> >
     @if (Model.Count > 0)
     {
 
@@ -50,6 +50,7 @@
         </div>
 
 
+        <!--show list of content with alternating color background-->
         var rowcol = "";
 
         for (int i = 0; i < Model.Count; i++)
@@ -87,6 +88,7 @@
                     @Model[i].Status
                 </span>
 
+                <!--buttons to click for editing-->
                 <form asp-action="Edit" class="col100">
 
                     <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">rediger</button>
@@ -105,6 +107,7 @@
     }
     else
     {
+        <!--show user nothing was found in the database-->
         <div class="row rowPadding">
 
             <div class="col-md-auto ">
@@ -121,7 +124,7 @@
                 </form>
             </div>
 
-            @*<div class="row overViewFooter"></div>*@
+
 
         </div>
     }

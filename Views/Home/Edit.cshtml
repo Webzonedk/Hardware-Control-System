@@ -4,12 +4,15 @@
     ViewData["Title"] = "Rediger";
 }
 
-
+<!--set date variable to current date time-->
 @{ DateTime date = DateTime.Now; }
+
+<!--form to send data to model-->
 <form asp-action="Confirmation" class="was-validated">
     <div method="post" asp-validation-summary="ModelOnly"></div>
     <div class="row">
 
+        <!--left panel user can enable editing on case-->
         <div class="col-md-5 ">
 
             <div class="col-md-12 inputFieldLeft">
@@ -90,7 +93,7 @@
 
 
 
-
+        <!--button for sending data to the database-->
         <div class="col-md-2">
             <div class="buttomCenter">
                 <input class="btn btn-primary " type="submit" value="Gem" />
@@ -101,7 +104,7 @@
 
 
 
-
+        <!--right panel for adding input to new log-->
         <div class="col-md-5 ">
 
             <div class="col-md-12 inputFieldRight">
@@ -175,6 +178,8 @@
 
 
     <br />
+
+    <!--list of logs with alternating background colors-->
     <h2>Hændelsesforløb:</h2>
     <div>
         @{var rowcol = ""; }
@@ -246,7 +251,10 @@
 
 </form>
 
+<!--java script to enable editing-->
 <script src="~/js/JavaScript.js"></script>
+
+<!--java script to count remaining text in description-->
 <script src="~/js/textCount.js"></script>
 
 

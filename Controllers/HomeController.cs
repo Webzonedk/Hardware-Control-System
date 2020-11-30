@@ -15,22 +15,26 @@ namespace RedCrossItCheckingSystem.Controllers
 {
     public class HomeController : Controller
     {
+        //public bool field for checking state of login & field for configuration 
         public bool IsLoggedIn;
         private readonly IConfiguration configuration;
 
+        // constructor of homecontroller
         public HomeController(IConfiguration config)
         {
             this.configuration = config;
         }
 
 
-
+        // Action event to return view to index page
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        // action event to check if user is logged in and return view to search page
+        // returns to error page if not logged in
         [HttpGet]
         public IActionResult Search()
         {
@@ -47,6 +51,8 @@ namespace RedCrossItCheckingSystem.Controllers
 
         }
 
+        //action event returns page of search results
+        //model of search results are returned to the view if any exists
         [HttpPost]
         public IActionResult SearchResult(DataContainer container)
         {
@@ -79,6 +85,8 @@ namespace RedCrossItCheckingSystem.Controllers
 
         }
 
+        // action event returns data from the database and returns the edit view with the data model
+        //takes in a string of case id, data is collected based on case id.
         [HttpPost]
         public IActionResult Edit(string submit)
         {
@@ -93,6 +101,8 @@ namespace RedCrossItCheckingSystem.Controllers
 
         }
 
+        // action event returns the confirmation page after adding data to the database
+        // the view takes in data from the database after uploading.
         [HttpPost]
         public IActionResult Confirmation(DataContainer container)
         {
@@ -115,6 +125,7 @@ namespace RedCrossItCheckingSystem.Controllers
             return View(container2);
         }
 
+        // action event returns Review page with data from database.
         [HttpPost]
         public IActionResult Review(string submit)
         {
@@ -125,6 +136,8 @@ namespace RedCrossItCheckingSystem.Controllers
             return View(container);
         }
 
+        // action event creates new data model and returns the create page with the data model.
+        //serial number is collected though Session.
         [HttpPost]
         public IActionResult Create()
         {
@@ -135,6 +148,8 @@ namespace RedCrossItCheckingSystem.Controllers
             return View(container);
         }
 
+        // action event returns a list of data from database
+        // the list is filtered before returned to the overview page
         public IActionResult Overview(string selector, string caseId)
         {
 
@@ -144,7 +159,8 @@ namespace RedCrossItCheckingSystem.Controllers
                 DbManager manager = new DbManager(configuration);
                 List<DataContainer> containers = manager.GetAllData();
                 List<DataContainer> sortedList = new List<DataContainer>();
-                Debug.WriteLine(selector);
+                
+                // data is added to the sortedlist when the status matches the selector string
                 for (int i = 0; i < containers.Count; i++)
                 {
                     switch (selector)
@@ -201,12 +217,15 @@ namespace RedCrossItCheckingSystem.Controllers
 
         }
 
+        // action event returns error page when not logged in
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        // action event sends user input to database and checks for validation
+        // returns index page if validation is ok
         [HttpPost]
         public IActionResult CheckUser(UserData user)
         {
@@ -228,11 +247,13 @@ namespace RedCrossItCheckingSystem.Controllers
 
         }
 
+        // action event returns the login page to the view
         public IActionResult Login()
         {
             return View();
         }
 
+        // action event return to login page and sets the session to logout
         public IActionResult Logout()
         {
             bool logout = false;
