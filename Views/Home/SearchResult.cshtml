@@ -42,9 +42,10 @@
             <span class="col175 ">
                 <label>Tilbehør</label>
             </span>
-            <span class="col75 ">
+            <span class="col125 ">
                 <label>Status</label>
             </span>
+          
 
 
         </div>
@@ -65,38 +66,39 @@
             }
 
 
-            <div class="row rowPadding" style="background-color:@rowcol;">
+<div class="row rowPadding" style="background-color:@rowcol;">
 
 
-                <span class="col75">
-                    @Model[i].CaseID
-                </span>
+    <span class="col75">
+        @Model[i].CaseID
+    </span>
 
-                <span class="col150">
-                    @Model[i].SerialNumber
-                </span>
-                <span class="col125">
-                    @Model[i].DeviceType
-                </span>
-                <span class="col125">
-                    @Model[i].DeviceName
-                </span>
-                <span class="col175 ">
-                    @Model[i].Accessories
-                </span>
-                <span class="col75">
-                    @Model[i].Status
-                </span>
+    <span class="col150">
+        @Model[i].SerialNumber
+    </span>
+    <span class="col125">
+        @Model[i].DeviceType
+    </span>
+    <span class="col125">
+        @Model[i].DeviceName
+    </span>
+    <span class="col175 ">
+        @Model[i].Accessories
+    </span>
+    <span class="col125">
+        @Model[i].Status
+    </span>
+  
 
-                <!--buttons to click for editing-->
-                <form asp-action="Edit" class="col100">
+    <!--buttons to click for editing-->
+    <form asp-action="Edit" class="col100">
 
-                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Rediger</button>
+        <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Rediger</button>
 
-                </form>
+    </form>
 
 
-            </div>
+</div>
 
 
         }
