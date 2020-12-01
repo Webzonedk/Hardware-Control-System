@@ -16,9 +16,12 @@ namespace RedCrossItCheckingSystem.DAL
 {
     public class DbManager
     {
+        //private fields containting connectionstrings for databases
         private readonly IConfiguration configuration;
         private readonly string itemsConnectionString;
         private readonly string usersConnectionString;
+       
+        //constructor setting connectionstrings to databases
         public DbManager(IConfiguration _configuration)
         {
             this.configuration = _configuration;
@@ -27,7 +30,7 @@ namespace RedCrossItCheckingSystem.DAL
         }
 
 
-
+        //method to get data from database, based on serial number
         internal List<DataContainer> GetDataFromserial(DataContainer container)
         {
             SqlConnection con = new SqlConnection(itemsConnectionString);
@@ -67,13 +70,12 @@ namespace RedCrossItCheckingSystem.DAL
                     }
                 }
 
-                Debug.Write(containers.Count);
-
             }
             catch (Exception)
             {
                 DataContainer output = new DataContainer();
-                //disable container
+               
+                //disable container if no connection to database
                 output.IsValid = false;
             }
 
@@ -82,6 +84,7 @@ namespace RedCrossItCheckingSystem.DAL
             return containers;
         }
 
+        //method for getting data out of database, based on case id
         internal DataContainer GetDataFromCaseID(int caseID)
         {
             SqlConnection con = new SqlConnection(itemsConnectionString);
@@ -91,18 +94,15 @@ namespace RedCrossItCheckingSystem.DAL
             cmd.Parameters.Add("@caseID", System.Data.SqlDbType.Int).Value = caseID;
 
             DataContainer container = new DataContainer();
-            List<DataLog> logs = new List<DataLog>();
             try
             {
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                int counter = 0;
-                //read the data and count for every row
+               
+                //read the data
                 while (reader.Read())
                 {
-
                     DataLog log = new DataLog();
-
 
                     container.SerialNumber = (string)reader["serialNumber"];
                     container.CaseID = (int)reader["caseID"];
@@ -118,19 +118,12 @@ namespace RedCrossItCheckingSystem.DAL
                     log.LogDate = reader.GetDateTime(reader.GetOrdinal("logdate"));
 
                     container.DataLogs.Add(log);
-                    counter++;
-                    //  Debug.WriteLine(date);
                 }
 
-                for (int i = 0; i < container.DataLogs.Count; i++)
-                {
-                    //  container.DataLogs[i].Department
-                }
-                //   counter = 0;
             }
             catch (Exception)
             {
-                //disable container
+                //disable container if no connection to database
                 container.IsValid = false;
             }
 
@@ -140,6 +133,7 @@ namespace RedCrossItCheckingSystem.DAL
 
         }
 
+        //method to send log data to database
         internal void SetData(DataContainer container)
         {
             SqlConnection con = new SqlConnection(itemsConnectionString);
@@ -152,7 +146,7 @@ namespace RedCrossItCheckingSystem.DAL
             cmd.Parameters.Add("@caseID", System.Data.SqlDbType.VarChar).Value = container.CaseID;
             cmd.Parameters.Add("@SerialNumber", System.Data.SqlDbType.VarChar).Value = container.SerialNumber;
             cmd.Parameters.Add("@department", System.Data.SqlDbType.VarChar).Value = container.DataLogs[lastLog].Department;
-            cmd.Parameters.Add("@logDate", System.Data.SqlDbType.Date).Value = DateTime.Now;
+            cmd.Parameters.Add("@logDate", System.Data.SqlDbType.DateTime).Value = DateTime.Now;
             cmd.Parameters.Add("@status", System.Data.SqlDbType.VarChar).Value = container.Status;
             cmd.Parameters.Add("@deviceName", System.Data.SqlDbType.VarChar).Value = container.DeviceName;
             cmd.Parameters.Add("@deviceType", System.Data.SqlDbType.VarChar).Value = container.DeviceType;
@@ -164,6 +158,7 @@ namespace RedCrossItCheckingSystem.DAL
             con.Close();
         }
 
+        //int method to add new case data to database. method returns the case id after inserting into database
         internal int CreateData(DataContainer container)
         {
             SqlConnection con = new SqlConnection(itemsConnectionString);
@@ -172,7 +167,7 @@ namespace RedCrossItCheckingSystem.DAL
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.Add("@SerialNumber", System.Data.SqlDbType.VarChar).Value = container.SerialNumber;
             cmd.Parameters.Add("@department", System.Data.SqlDbType.VarChar).Value = container.DataLogs[0].Department;
-            cmd.Parameters.Add("@logDate", System.Data.SqlDbType.Date).Value = container.DataLogs[0].LogDate;
+            cmd.Parameters.Add("@logDate", System.Data.SqlDbType.DateTime).Value = DateTime.Now;
             cmd.Parameters.Add("@status", System.Data.SqlDbType.VarChar).Value = container.Status;
             cmd.Parameters.Add("@deviceName", System.Data.SqlDbType.VarChar).Value = container.DeviceName;
             cmd.Parameters.Add("@deviceType", System.Data.SqlDbType.VarChar).Value = container.DeviceType;
@@ -190,6 +185,7 @@ namespace RedCrossItCheckingSystem.DAL
             return output;
         }
 
+        //bool method takes in userdata, SQL query checks if username & password exsist. Returns true or false
         internal bool UserLogin(UserData user)
         {
             SqlConnection con = new SqlConnection(usersConnectionString);
@@ -224,6 +220,7 @@ namespace RedCrossItCheckingSystem.DAL
             }
         }
 
+        // method returns a list of all data from database
         internal List<DataContainer> GetAllData()
         {
             SqlConnection con = new SqlConnection(itemsConnectionString);
@@ -253,7 +250,6 @@ namespace RedCrossItCheckingSystem.DAL
 
 
 
-
                     counter++;
                     // check if reader has rows
                     if (counter > 0)
@@ -263,14 +259,11 @@ namespace RedCrossItCheckingSystem.DAL
                     }
                 }
 
-
-                // Debug.Write(containers.Count);
-
             }
             catch (Exception)
             {
                 DataContainer output = new DataContainer();
-                //disable container
+                //disable container if no connection
                 output.IsValid = false;
             }
 

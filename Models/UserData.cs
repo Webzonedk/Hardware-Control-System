@@ -8,11 +8,13 @@ namespace RedCrossItCheckingSystem.Models
 {
     public class UserData
     {
+        //private fields with required attribute
         [Required]
         private string userName;
         [Required]
         private string password;
 
+        //public properties
         public string UserName { get => userName; set => userName = value; }
         public string Password { get => password; set => password = value; }
     }

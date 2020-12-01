@@ -1,48 +1,50 @@
-﻿@model RedCrossItCheckingSystem.Models.OverviewModel
+﻿@model List<RedCrossItCheckingSystem.Models.DataContainer>
 @{
     ViewData["Title"] = "Home Page";
 }
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor httpcontextAccessor
-
+<!--getting the currently selected filter-->
 @{string status = httpcontextAccessor.HttpContext.Session.GetString("status"); }
 
-@*@{int counter = 0; }*@
 
 <div class="container shadow">
 
-    @if (Model.Containers.Count > 0)
+    <!--showing list of content if list exist-->
+    @if (Model.Count > 0)
     {
         <div class="row overViewHeader">
             <div class="col-md-12">
                 <form class="row" asp-action="Overview" method="post">
                     <div class="col75 ">
-                        <button class="TitleBtn"  id="caseid" name="selector" type="submit" value="@Model.CaseIDCount +=1">Sagsnr.</button>
+                        <label>Sagsnr.</label>
                     </div>
                     <div class="col150">
-                        <a href="../Home/Overview" type="submit" >Serienr.</a>
+                        <label>Serienr.</label>
                     </div>
                     <div class="col125">
-                        <a href="../Home/Overview" type="submit" >Kategori</a>
+                        <label>Kategori</label>
                     </div>
                     <div class="col125 ">
-                        <a href="../Home/Overview" type="submit" >Model</a>
+                        <label>Model</label>
                     </div>
                     <div class="col175 ">
-                        <a href="../Home/Overview" type="submit" >Tilbehør</a>
+                        <label>Tilbehør</label>
+                    </div>
+                    <div class="col125 ">
+                        <label>Status</label>
                     </div>
                     <div class="col75 ">
-                        <a href="../Home/Overview" type="submit" >Status</a>
+                        <label>Logs</label>
                     </div>
                     <div class="col125 ">
-                        <a href="../Home/Overview" type="submit" >Antal Logs</a>
-                    </div>
-                    <div class="col125 ">
-                        <select id="selector" name="selector" asp-for="@Model.Filter">
+                        <select id="selector" name="selector">
                             <option value="Filtrer">Filtrer</option>
+                            <option value="Ankommet">Ankommet</option>
                             <option value="Igang">Igang</option>
                             <option value="Defekt">Defekt</option>
                             <option value="OK">OK</option>
+                            <option value="Afsluttet">Afsluttet</option>
                         </select>
                     </div>
                 </form>
@@ -50,10 +52,10 @@
         </div>
 
 
-
+        <!--showing list content with alternating background colors-->
         var rowcol = "";
 
-        for (int i = 0; i < Model.Containers.Count; i++)
+        for (int i = 0; i < Model.Count; i++)
         {
             if (i % 2 == 0)
             {
@@ -69,35 +71,36 @@
 
 
                 <span class="col75">
-                    @Model.Containers[i].CaseID
+                    @Model[i].CaseID
                 </span>
-
                 <span class="col150">
-                    @Model.Containers[i].SerialNumber
+                    @Model[i].SerialNumber
                 </span>
                 <span class="col125">
-                    @Model.Containers[i].DeviceType
+                    @Model[i].DeviceType
                 </span>
                 <span class="col125">
-                    @Model.Containers[i].DeviceName
+                    @Model[i].DeviceName
                 </span>
                 <span class="col175 ">
-                    @Model.Containers[i].Accessories
-                </span>
-                <span class="col75">
-                    @Model.Containers[i].Status
+                    @Model[i].Accessories
                 </span>
                 <span class="col125">
-                    @Model.Containers[i].LogCount
+                    @Model[i].Status
                 </span>
+                <span class="col75">
+                    @Model[i].LogCount
+                </span>
+
+                <!--buttons to edit or review the logs-->
                 <form asp-action="Edit" class="col100">
 
-                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model.Containers[i].CaseID">Rediger</button>
+                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Rediger</button>
 
                 </form>
                 <form asp-action="Review" class="col100">
 
-                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model.Containers[i].CaseID">Vis Log</button>
+                    <button class="btn btn-primary btn-sm" type="submit" name="submit" value="@Model[i].CaseID">Vis Log</button>
 
                 </form>
 
@@ -115,6 +118,7 @@
     }
     else
     {
+        <!--show user if no data was found-->
         <div class="row overViewHeader">
 
             <span class="col75 ">
@@ -132,19 +136,21 @@
             <span class="col175 ">
                 <label>Tilbehør</label>
             </span>
-            <span class="col75 ">
+            <span class="col125 ">
                 <label>Status</label>
             </span>
-            <span class="col125 ">
-                <label>Antal Logs</label>
+            <span class="col75 ">
+                <label>Logs</label>
             </span>
             <div class="col125 ">
-                <form asp-action="Overview" method="post" >
-                    <select id="selector" name="selector" asp-for="@Model.Filter">
+                <form asp-action="Overview" method="post">
+                    <select id="selector" name="selector">
                         <option value="Filtrer">Filtrer</option>
+                        <option value="Ankommet">Ankommet</option>
                         <option value="Igang">Igang</option>
                         <option value="Defekt">Defekt</option>
                         <option value="OK">OK</option>
+                        <option value="Afsluttet">Afsluttet</option>
                     </select>
                 </form>
             </div>
@@ -162,6 +168,7 @@
 
     }
 
+    <!--java script to set the filter based on session variable-->
     <script type="text/javascript">
     function javascriptFunction(status)
     {
@@ -174,7 +181,6 @@
 </div>
 
 <script src="~/js/statusSelector.js"></script>
-
 
 
 

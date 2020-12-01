@@ -1,4 +1,5 @@
-﻿$('textarea').keyup(function () {
+﻿
+$('textarea').keyup(function () {
     if (this.value.length === 0) {
         $('#limit').show();
         $('#remaining').hide();
