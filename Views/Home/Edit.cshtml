@@ -25,7 +25,7 @@
                         <div class="col-md-5 rowPadding">
                             <input class="colWidth100 form-control" asp-for="CaseID" readonly />
                         </div>
-                        <div class="col-md-3 label">
+                        <div class="col-md-3 label rowPaddingSwitch">
                             <label>Aktiver</label>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                         <div class="col-md-5 rowPadding">
                             <input id="serialId" class="colWidth100 form-control" asp-for="SerialNumber" placeholder="Serienummer" readonly required maxlength="50" />
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 rowPaddingSwitch">
                             <label class="switch">
                                 <input id="checkSerial" type="checkbox">
                                 <span class="slider round"></span>
@@ -50,7 +50,7 @@
                         <div class="col-md-5 rowPadding">
                             <input id="typeId" class="colWidth100 form-control" asp-for="DeviceType" placeholder="Kategori" readonly required maxlength="50" />
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 rowPaddingSwitch">
                             <label class="switch">
                                 <input id="checkType" type="checkbox">
                                 <span class="slider round"></span>
@@ -64,7 +64,7 @@
                         <div class="col-md-5 rowPadding">
                             <input id="deviceId" class="colWidth100 form-control" asp-for="DeviceName" placeholder="Model" readonly required maxlength="50" />
                         </div>
-                        <div class="col-md-3 rowPadding">
+                        <div class="col-md-3 rowPaddingSwitch">
                             <label class="switch">
                                 <input id="checkDevice" type="checkbox">
                                 <span class="slider round"></span>
@@ -78,7 +78,7 @@
                         <div class="col-md-5 rowPadding">
                             <input id="accesoriesId" class="colWidth100 form-control" asp-for="Accessories" placeholder="Tilbehør" readonly required maxlength="50" />
                         </div>
-                        <div class="col-md-3 rowPadding">
+                        <div class="col-md-3 rowPaddingSwitch">
                             <label class="switch">
                                 <input id="checkAccessories" type="checkbox">
                                 <span class="slider round"></span>
@@ -241,7 +241,7 @@
                                     <label>Beskrivelse:</label>
                                 </div>
                                 <div class="col-md-7 rowPadding">
-                                    <textarea class="form-control" asp-for="DataLogs[i].Description" rows="4" cols="40" readonly></textarea>
+                                    <textarea class="form-control" asp-for="DataLogs[i].Description" rows="6" cols="40" readonly></textarea>
 
                                 </div>
                             </div>
